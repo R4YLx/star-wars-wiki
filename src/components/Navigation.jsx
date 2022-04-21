@@ -22,18 +22,12 @@ export default function Navigation() {
 				<div className='collapse navbar-collapse' id='navbarColor01'>
 					<ul className='navbar-nav me-auto'>
 						<li className='nav-item'>
-							<NavLink to='/' className='nav-link active'>
-								Home
-								<span className='visually-hidden'>(current)</span>
-							</NavLink>
-						</li>
-						<li className='nav-item'>
-							<NavLink to='/' className='nav-link'>
+							<NavLink to='/characters' className='nav-link'>
 								Characters
 							</NavLink>
 						</li>
 						<li className='nav-item'>
-							<NavLink to='/' className='nav-link'>
+							<NavLink to='/films' className='nav-link'>
 								Films
 							</NavLink>
 						</li>

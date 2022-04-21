@@ -1,0 +1,16 @@
+.card-header {
+	height: 8ch;
+}
+
+h2 {
+	font-size: 1.25rem !important;
+}
+
+span {
+	color: rgb(52, 58, 64);
+	font-weight: bold;
+}
+
+hr {
+	border: 1px solid black;
+}
