@@ -1,13 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import './Characters.css'
 import SwapiAPI from '../../services/SwapiAPI'
+import Loading from '../../components/Loading/Loading'
 
 export default function Characters() {
-	const [characters, setCharacters] = useState('')
+	const [characters, setCharacters] = useState()
+	const [loading, setLoading] = useState(false)
+	const [page, setPage] = useState(0)
 
 	const fetchCharacters = async () => {
+		setLoading(true)
 		const data = await SwapiAPI.getCharacters()
 		setCharacters(data)
+		setPage(0)
+		setLoading(false)
 	}
 
 	useEffect(() => {
@@ -17,6 +23,8 @@ export default function Characters() {
 	return (
 		<>
 			<div className='d-flex flex-wrap justify-content-center'>
+				{loading && <Loading />}
+
 				{characters &&
 					characters.results.map((character, index) => (
 						<div
@@ -48,11 +56,20 @@ export default function Characters() {
 						</div>
 					))}
 			</div>
-			<div className='d-flex justify-content-between p-4'>
-				<button type='button' className='btn btn-secondary'>
+			<div className='d-flex justify-content-between align-items-center p-4'>
+				<button
+					onClick={() => setPage(prevValue => prevValue - 1)}
+					type='button'
+					className='btn btn-secondary'
+				>
 					Previous Page
 				</button>
-				<button type='button' className='btn btn-secondary'>
+				<div className='page'>{page + 1}</div>
+				<button
+					onClick={() => setPage(prevValue => prevValue + 1)}
+					type='button'
+					className='btn btn-secondary'
+				>
 					Next Page
 				</button>
 			</div>

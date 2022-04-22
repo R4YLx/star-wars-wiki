@@ -1,13 +1,17 @@
 import './Films.css'
 import React, { useEffect, useState } from 'react'
 import SwapiAPI from '../../services/SwapiAPI'
+import Loading from '../../components/Loading/Loading'
 
 export default function Films() {
 	const [films, setFilms] = useState('')
+	const [loading, setLoading] = useState(false)
 
 	const fetchFilms = async () => {
+		setLoading(true)
 		const data = await SwapiAPI.getFilms()
 		setFilms(data)
+		setLoading(false)
 	}
 
 	useEffect(() => {
@@ -16,6 +20,8 @@ export default function Films() {
 
 	return (
 		<div className='d-flex flex-wrap justify-content-center'>
+			{loading && <Loading />}
+
 			{films &&
 				films.results.map(film => (
 					<div

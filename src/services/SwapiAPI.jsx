@@ -42,10 +42,15 @@ const getSingleFilm = async id => {
 	}
 }
 
+const getPage = async (query, page) => {
+	return axios.get(`/${query}?page=${page}`)
+}
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
 	getFilms,
 	getCharacters,
 	getSingleCharacter,
 	getSingleFilm,
+	getPage,
 }
