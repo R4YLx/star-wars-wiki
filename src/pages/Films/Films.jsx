@@ -1,5 +1,5 @@
 import './Films.css'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import SwapiAPI from '../../services/SwapiAPI'
 import Loading from '../../components/Loading/Loading'
 
@@ -28,7 +28,7 @@ export default function Films() {
 						key={film.episode_id}
 						className='card border-secondary m-3 col-md-3 col-sm-4 col-xs-12'
 					>
-						<div className='card-header d-flex align-items-center'>
+						<div className='card-header film-card-header d-flex align-items-center'>
 							<h2>{film.title}</h2>
 						</div>
 						<div className='card-body'>

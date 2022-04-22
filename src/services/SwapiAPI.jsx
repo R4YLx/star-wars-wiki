@@ -42,8 +42,13 @@ const getSingleFilm = async id => {
 	}
 }
 
-const getPage = async (query, page) => {
-	return axios.get(`/${query}?page=${page}`)
+const getPage = async (query, id) => {
+	try {
+		const res = await axios.get(`/${query}/?page=${id}`)
+		return res.data
+	} catch (err) {
+		return err.message
+	}
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
