@@ -1,5 +1,7 @@
 # Star Wars Wiki
 
+Visit the page [https://swapi-wiki.netlify.app/](https://swapi-wiki.netlify.app/)
+
 Build a website with React and using [SWAPI](https://swapi.dev/)(Star Wars API)
 
 ### Languages used:
