@@ -1,6 +1,12 @@
+import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
 export default function Navigation() {
+	const [isActive, setActive] = useState(false)
+	const handleToggle = () => {
+		setActive(!isActive)
+	}
+
 	return (
 		<nav className='navbar navbar-expand-lg navbar-dark bg-primary'>
 			<div className='container-fluid'>
@@ -8,6 +14,7 @@ export default function Navigation() {
 					Star Wars Wiki
 				</NavLink>
 				<button
+					onClick={handleToggle}
 					className='navbar-toggler'
 					type='button'
 					data-bs-toggle='collapse'
@@ -19,7 +26,12 @@ export default function Navigation() {
 					<span className='navbar-toggler-icon'></span>
 				</button>
 
-				<div className='collapse navbar-collapse' id='navbarColor01'>
+				{/* className='collapse navbar-collapse' */}
+
+				<div
+					className={`${isActive ? 'collapse' : ''} navbar-collapse`}
+					id='navbarColor01'
+				>
 					<ul className='navbar-nav me-auto'>
 						<li className='nav-item'>
 							<NavLink to='/characters' className='nav-link'>
