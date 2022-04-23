@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import SwapiAPI from '../../services/SwapiAPI'
 import Loading from '../../components/Loading/Loading'
 import { Link } from 'react-router-dom'
+import { getIdFromUrl } from '../../helpers/helpers'
 
 export default function Films() {
 	const [films, setFilms] = useState('')
@@ -13,6 +14,7 @@ export default function Films() {
 		const data = await SwapiAPI.getFilms()
 		setFilms(data)
 		setLoading(false)
+		console.log(films)
 	}
 
 	useEffect(() => {
@@ -48,7 +50,7 @@ export default function Films() {
 								{film.characters.length}
 							</p>
 
-							<Link to={`/films/${film.episode_id}`}>
+							<Link to={`/films/${getIdFromUrl(film.url)}`}>
 								<button type='button' className='btn btn-primary'>
 									Read more
 								</button>

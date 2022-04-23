@@ -26,8 +26,6 @@ export default function Navigation() {
 					<span className='navbar-toggler-icon'></span>
 				</button>
 
-				{/* className='collapse navbar-collapse' */}
-
 				<div
 					className={`${isActive ? 'collapse' : ''} navbar-collapse`}
 					id='navbarColor01'
