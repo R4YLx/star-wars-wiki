@@ -72,7 +72,10 @@ export default function CharactersDetails() {
 						</div>
 						<ul className='list-group list-group-flush'>
 							{films.map(film => (
-								<Link to={`/films/${getIdFromUrl(film)}`}>
+								<Link
+									key={getIdFromUrl(film)}
+									to={`/films/${getIdFromUrl(film)}`}
+								>
 									<li className='list-group-item'>Film {getIdFromUrl(film)}</li>
 								</Link>
 							))}

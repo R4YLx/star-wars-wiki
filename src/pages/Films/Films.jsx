@@ -2,6 +2,7 @@ import './Films.css'
 import { useEffect, useState } from 'react'
 import SwapiAPI from '../../services/SwapiAPI'
 import Loading from '../../components/Loading/Loading'
+import { Link } from 'react-router-dom'
 
 export default function Films() {
 	const [films, setFilms] = useState('')
@@ -46,9 +47,12 @@ export default function Films() {
 								<span>Characters: </span>
 								{film.characters.length}
 							</p>
-							<button type='button' className='btn btn-primary'>
-								Read more
-							</button>
+
+							<Link to={`/films/${film.episode_id}`}>
+								<button type='button' className='btn btn-primary'>
+									Read more
+								</button>
+							</Link>
 						</div>
 					</div>
 				))}
