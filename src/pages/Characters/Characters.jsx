@@ -5,21 +5,22 @@ import Loading from '../../components/Loading/Loading'
 import { Link } from 'react-router-dom'
 
 export default function Characters() {
-	const [characters, setCharacters] = useState()
+	const [characters, setCharacters] = useState([])
 	const [loading, setLoading] = useState(false)
 	const [page, setPage] = useState(1)
 
 	const fetchCharacters = async () => {
 		setLoading(true)
-		const data = await SwapiAPI.getCharacters()
-		setCharacters(data)
-		setPage(1)
+		const data = await SwapiAPI.getCharacters(page)
+		setCharacters(data.results)
 		setLoading(false)
+
+		console.log(characters)
 	}
 
 	useEffect(() => {
 		fetchCharacters()
-	}, [])
+	}, [page])
 
 	return (
 		<>
@@ -27,7 +28,7 @@ export default function Characters() {
 				{loading && <Loading />}
 
 				{characters &&
-					characters.results.map((character, index) => (
+					characters.map((character, index) => (
 						<div
 							key={index}
 							className='card border-secondary m-3 col-md-3 col-sm-4 col-xs-12'
@@ -70,6 +71,7 @@ export default function Characters() {
 				</button>
 				<div className='page'>{page}</div>
 				<button
+					disabled={characters.length < 9}
 					onClick={() => setPage(prevValue => prevValue + 1)}
 					type='button'
 					className='btn btn-secondary'

@@ -12,9 +12,9 @@ const getFilms = async () => {
 	}
 }
 
-const getCharacters = async () => {
+const getCharacters = async page => {
 	try {
-		const res = await axios.get('/people')
+		const res = await axios.get(`/people/?page=${page}`)
 
 		return res.data
 	} catch (err) {
