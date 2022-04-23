@@ -42,7 +42,7 @@ const getSingleFilm = async id => {
 	}
 }
 
-const getPage = async (query, page) => {
+const search = async (query, page) => {
 	try {
 		const res = await axios.get(`/${query}/?search=${page}`)
 		return res.data
@@ -57,5 +57,5 @@ export default {
 	getCharacters,
 	getSingleCharacter,
 	getSingleFilm,
-	getPage,
+	search,
 }

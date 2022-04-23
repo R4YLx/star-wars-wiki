@@ -1,5 +1,7 @@
 # Star Wars Wiki
 
+Build a website with React and using [SWAPI](https://swapi.dev/)(Star Wars API)
+
 ### Languages used:
 
 - JSX
@@ -12,7 +14,14 @@
 
 ## Assignment
 
+A simple webpage with characters and films from the Star Wars universe.
+User should be able to click on specific film and character to get more info.
+
 #### Requirement
+
+- React
+- React Router
+- Use Axios for API
 
 #### Time limit
 
@@ -25,4 +34,4 @@
 
 ## Printscreen
 
-<img src="" width=100%>
+<img src="https://github.com/R4YLx/star-wars-wiki/blob/main/src/assets/scrn.png" width=100%>

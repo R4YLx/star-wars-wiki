@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import SwapiAPI from '../../services/SwapiAPI'
 import Loading from '../../components/Loading/Loading'
 import { Link } from 'react-router-dom'
+import SearchBar from '../../components/SearchBar'
 
 export default function Characters() {
 	const [characters, setCharacters] = useState([])
@@ -24,6 +25,7 @@ export default function Characters() {
 
 	return (
 		<>
+			<SearchBar />
 			<div className='d-flex flex-wrap justify-content-center'>
 				{loading && <Loading />}
 

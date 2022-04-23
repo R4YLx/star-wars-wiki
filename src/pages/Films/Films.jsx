@@ -4,6 +4,7 @@ import SwapiAPI from '../../services/SwapiAPI'
 import Loading from '../../components/Loading/Loading'
 import { Link } from 'react-router-dom'
 import { getIdFromUrl } from '../../helpers/helpers'
+import SearchBar from '../../components/SearchBar'
 
 export default function Films() {
 	const [films, setFilms] = useState('')
@@ -23,6 +24,7 @@ export default function Films() {
 
 	return (
 		<>
+			<SearchBar />
 			<div className='d-flex flex-wrap justify-content-center'>
 				{loading && <Loading />}
 
