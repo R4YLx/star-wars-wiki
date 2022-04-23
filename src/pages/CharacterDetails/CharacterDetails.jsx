@@ -47,11 +47,11 @@ export default function CharactersDetails() {
 							</p>
 							<p className='card-text text-dark'>
 								<span className='detail'> Height: </span>
-								{details.height}
+								{details.height} cm
 							</p>
 							<p className='card-text text-dark'>
 								<span className='detail'> Mass: </span>
-								{details.mass}
+								{details.mass} kg
 							</p>
 							<p className='card-text text-dark'>
 								<span className='detail'> Hair color: </span>

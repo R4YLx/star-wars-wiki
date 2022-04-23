@@ -5,7 +5,12 @@
 }
 
 .App {
-	background-image: url(./assets/stars-bg.jpg);
+	background-image: linear-gradient(
+			rgba(0, 0, 0, 0.644),
+			rgba(1, 16, 63, 0.247)
+		),
+		url(./assets/stars-bg.jpg);
+
 	background-size: cover;
 	min-height: 100vh;
 }

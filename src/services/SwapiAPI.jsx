@@ -42,9 +42,9 @@ const getSingleFilm = async id => {
 	}
 }
 
-const getPage = async (query, id) => {
+const getPage = async (query, page) => {
 	try {
-		const res = await axios.get(`/${query}/?page=${id}`)
+		const res = await axios.get(`/${query}/?search=${page}`)
 		return res.data
 	} catch (err) {
 		return err.message
