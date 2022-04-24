@@ -24,7 +24,7 @@ export default function Characters() {
 
 	return (
 		<>
-			<SearchBar />
+			{/* <SearchBar /> */}
 			{loading && <Loading />}
 
 			<div className='d-flex flex-wrap justify-content-center'>
