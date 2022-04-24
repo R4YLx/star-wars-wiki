@@ -8,7 +8,7 @@ const getFilms = async () => {
 
 		return res.data
 	} catch (err) {
-		return err.message
+		throw err.message
 	}
 }
 
@@ -18,7 +18,7 @@ const getCharacters = async page => {
 
 		return res.data
 	} catch (err) {
-		return err.message
+		throw err.message
 	}
 }
 
@@ -28,7 +28,7 @@ const getSingleCharacter = async id => {
 
 		return res.data
 	} catch (err) {
-		return err.message
+		throw err.message
 	}
 }
 
@@ -38,16 +38,16 @@ const getSingleFilm = async id => {
 
 		return res.data
 	} catch (err) {
-		return err.message
+		throw err.message
 	}
 }
 
-const search = async (query, page) => {
+const search = async (resource, query) => {
 	try {
-		const res = await axios.get(`/${query}/?search=${page}`)
+		const res = await axios.get(`/${resource}/?search=${query}`)
 		return res.data
 	} catch (err) {
-		return err.message
+		throw err.message
 	}
 }
 

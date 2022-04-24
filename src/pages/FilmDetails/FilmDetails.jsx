@@ -3,21 +3,30 @@ import Loading from '../../components/Loading/Loading'
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { getIdFromUrl } from '../../helpers/helpers'
+import NotFound from '../NotFound/NotFound'
 
 export default function FilmDetails() {
 	const [details, setDetails] = useState([])
 	const [characters, setCharacters] = useState([])
+	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(false)
 	const { id } = useParams()
 	const navigate = useNavigate()
 
 	const fetchFilmDetails = async () => {
-		setLoading(true)
-		const data = await SwapiAPI.getSingleFilm(id)
-		console.log(id)
-		setDetails(data)
-		setCharacters(data.characters)
-		setLoading(false)
+		try {
+			setLoading(true)
+			const data = await SwapiAPI.getSingleFilm(id)
+			console.log(id)
+			setDetails(data)
+			setCharacters(data.characters)
+			setLoading(false)
+		} catch (err) {
+			setError(err)
+			setDetails(null)
+			console.log(err.message)
+			setLoading(false)
+		}
 	}
 
 	useEffect(() => {
@@ -26,8 +35,9 @@ export default function FilmDetails() {
 
 	return (
 		<>
+			{error && <NotFound />}
+			{loading && <Loading />}
 			<div className='d-flex  justify-content-center'>
-				{loading && <Loading />}
 				{details && (
 					<div className='card m-4 character-details-card'>
 						<h3 className='card-header text-dark'>{details.title}</h3>

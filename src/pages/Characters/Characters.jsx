@@ -4,6 +4,7 @@ import SwapiAPI from '../../services/SwapiAPI'
 import Loading from '../../components/Loading/Loading'
 import { Link } from 'react-router-dom'
 import SearchBar from '../../components/SearchBar'
+import { useSearchParams } from 'react-router-dom'
 
 export default function Characters() {
 	const [characters, setCharacters] = useState([])
@@ -15,8 +16,6 @@ export default function Characters() {
 		const data = await SwapiAPI.getCharacters(page)
 		setCharacters(data.results)
 		setLoading(false)
-
-		console.log(characters)
 	}
 
 	useEffect(() => {
@@ -26,9 +25,9 @@ export default function Characters() {
 	return (
 		<>
 			<SearchBar />
-			<div className='d-flex flex-wrap justify-content-center'>
-				{loading && <Loading />}
+			{loading && <Loading />}
 
+			<div className='d-flex flex-wrap justify-content-center'>
 				{characters &&
 					characters.map((character, index) => (
 						<div

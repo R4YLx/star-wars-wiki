@@ -25,9 +25,8 @@ export default function Films() {
 	return (
 		<>
 			<SearchBar />
+			{loading && <Loading />}
 			<div className='d-flex flex-wrap justify-content-center'>
-				{loading && <Loading />}
-
 				{films &&
 					films.results.map(film => (
 						<div
