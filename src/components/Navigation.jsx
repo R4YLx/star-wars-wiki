@@ -10,7 +10,7 @@ export default function Navigation() {
 	return (
 		<nav className='navbar navbar-expand-lg navbar-dark bg-primary'>
 			<div className='container-fluid'>
-				<NavLink to='/' className='navbar-brand'>
+				<NavLink to='/' className='navbar-brand site-name'>
 					Star Wars Wiki
 				</NavLink>
 				<button

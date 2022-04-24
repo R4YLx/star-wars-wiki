@@ -1,0 +1,22 @@
+.crawler {
+	background: none !important;
+}
+
+.crawler > div {
+	min-height: 100% !important;
+}
+
+.title {
+	font-size: 8rem;
+	color: #ffe81f;
+	white-space: wrap;
+}
+
+.subTitle {
+	font-size: 10rem;
+	color: #ffe81f;
+}
+
+.text {
+	color: #ffe81f;
+}
