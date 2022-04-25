@@ -1,5 +1,5 @@
 import './Characters.css'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import SwapiAPI from '../../services/SwapiAPI'
 import Loading from '../../components/Loading/Loading'
 import { Link } from 'react-router-dom'
@@ -9,8 +9,14 @@ import { useSearchParams } from 'react-router-dom'
 export default function Characters() {
 	const [characters, setCharacters] = useState([])
 	const [loading, setLoading] = useState(false)
+
+	const [searchInput, setSearchInput] = useState('')
+	const [searchResult, setSearchResult] = useState(null)
 	const [page, setPage] = useState(1)
 	const [searchParams, setSearchParams] = useSearchParams()
+	const searchInputRef = useRef()
+
+	const query = searchParams.get('query')
 
 	const fetchCharacters = async () => {
 		setCharacters([])
@@ -18,16 +24,55 @@ export default function Characters() {
 		const data = await SwapiAPI.getCharacters(page)
 		setCharacters(data.results)
 		setLoading(false)
-		setSearchParams({ page: page })
+
+		// setSearchParams({ page: page })
+	}
+
+	const searchSWAPI = async (searchQuery, page) => {
+		setLoading(true)
+		setSearchResult(null)
+
+		const data = await SwapiAPI.search('people', searchQuery, page)
+
+		setSearchResult(data)
+		setLoading(false)
+
+		console.log(data)
+	}
+
+	const handleSubmit = async e => {
+		e.preventDefault()
+
+		if (!searchInput.length) {
+			return
+		}
+
+		setPage(1)
+		searchSWAPI(searchInput, 1)
+		setSearchParams({ query: searchInput })
+		console.log(searchResult)
 	}
 
 	useEffect(() => {
 		fetchCharacters()
 	}, [page])
 
+	useEffect(() => {
+		if (!query) {
+			return
+		}
+
+		searchSWAPI(query, page)
+	}, [query, page])
+
 	return (
 		<>
-			{/* <SearchBar /> */}
+			<SearchBar
+				onHandleSubmit={handleSubmit}
+				onSetSearchInput={setSearchInput}
+				onSearchInput={searchInput}
+				onSearchInputRef={searchInputRef}
+			/>
 			{loading && <Loading />}
 
 			<div className='d-flex flex-wrap justify-content-center'>
