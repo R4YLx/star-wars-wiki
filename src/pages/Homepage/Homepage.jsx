@@ -4,6 +4,7 @@ import Crawl from 'react-star-wars-crawl'
 import 'react-star-wars-crawl/lib/index.css'
 import SwapiAPI from '../../services/SwapiAPI'
 import Loading from '../../components/Loading/Loading'
+import NotFound from '../NotFound/NotFound'
 
 export default function Homepage() {
 	const [data, setData] = useState([])
@@ -25,8 +26,9 @@ export default function Homepage() {
 
 	return (
 		<>
+			{data === 404 && <NotFound />}
 			{loading && <Loading />}
-			{data && (
+			{typeof data === 'object' && (
 				<Crawl
 					style={{ whiteSpace: 'pre-wrap' }}
 					title={`Episode ${data.episode_id}`}
