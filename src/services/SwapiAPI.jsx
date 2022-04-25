@@ -27,8 +27,8 @@ const getSingleCharacter = async id => {
 		const res = await axios.get(`/people/${id}`)
 
 		return res.data
-	} catch (err) {
-		throw err.message
+	} catch {
+		throw Error('404')
 	}
 }
 

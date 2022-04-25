@@ -8,24 +8,20 @@ import NotFound from '../NotFound/NotFound'
 export default function FilmDetails() {
 	const [details, setDetails] = useState([])
 	const [characters, setCharacters] = useState([])
-	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(false)
 	const { id } = useParams()
 	const navigate = useNavigate()
 
 	const fetchFilmDetails = async () => {
-		try {
-			setLoading(true)
-			const data = await SwapiAPI.getSingleFilm(id)
-			console.log(id)
-			setDetails(data)
-			setCharacters(data.characters)
-			setLoading(false)
-		} catch (err) {
-			setError(err)
-			setDetails(null)
-			console.log(err.message)
-			setLoading(false)
+		setLoading(true)
+		const data = await SwapiAPI.getSingleFilm(id)
+		console.log(id)
+		setDetails(data)
+		setCharacters(data.characters)
+		setLoading(false)
+
+		if (data === 404) {
+			console.log(data)
 		}
 	}
 
@@ -35,7 +31,8 @@ export default function FilmDetails() {
 
 	return (
 		<>
-			{error && <NotFound />}
+			{details === 404 && <NotFound />}
+
 			{loading && <Loading />}
 			<div className='d-flex  justify-content-center'>
 				{details && (
