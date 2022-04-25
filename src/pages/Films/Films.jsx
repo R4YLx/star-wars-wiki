@@ -5,17 +5,20 @@ import Loading from '../../components/Loading/Loading'
 import { Link } from 'react-router-dom'
 import { getIdFromUrl } from '../../helpers/helpers'
 import SearchBar from '../../components/SearchBar'
+import { useSearchParams } from 'react-router-dom'
 
 export default function Films() {
 	const [films, setFilms] = useState('')
 	const [loading, setLoading] = useState(false)
 	const [page, setPage] = useState(1)
+	const [searchParams, setSearchParams] = useSearchParams()
 
 	const fetchFilms = async () => {
 		setLoading(true)
 		const data = await SwapiAPI.getFilms()
 		setFilms(data)
 		setLoading(false)
+		setSearchParams({ page: page })
 	}
 
 	useEffect(() => {
