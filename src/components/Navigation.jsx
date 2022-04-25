@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
 export default function Navigation() {
-	const [isActive, setActive] = useState(false)
+	const [isActive, setActive] = useState(true)
 	const handleToggle = () => {
 		setActive(!isActive)
 	}
