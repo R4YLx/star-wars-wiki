@@ -32,12 +32,12 @@ export default function Navigation() {
 				>
 					<ul className='navbar-nav me-auto'>
 						<li className='nav-item'>
-							<NavLink to='/characters' className='nav-link'>
+							<NavLink to='/characters/' className='nav-link'>
 								Characters
 							</NavLink>
 						</li>
 						<li className='nav-item'>
-							<NavLink to='/films' className='nav-link'>
+							<NavLink to='/films/' className='nav-link'>
 								Films
 							</NavLink>
 						</li>

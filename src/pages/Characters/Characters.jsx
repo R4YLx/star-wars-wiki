@@ -10,12 +10,15 @@ export default function Characters() {
 	const [characters, setCharacters] = useState([])
 	const [loading, setLoading] = useState(false)
 	const [page, setPage] = useState(1)
+	const [searchParams, setSearchParams] = useSearchParams()
 
 	const fetchCharacters = async () => {
+		setCharacters([])
 		setLoading(true)
 		const data = await SwapiAPI.getCharacters(page)
 		setCharacters(data.results)
 		setLoading(false)
+		setSearchParams({ page: page })
 	}
 
 	useEffect(() => {

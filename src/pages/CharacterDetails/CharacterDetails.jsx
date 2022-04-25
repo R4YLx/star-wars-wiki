@@ -9,27 +9,19 @@ import NotFound from '../NotFound/NotFound'
 export default function CharactersDetails() {
 	const [details, setDetails] = useState([])
 	const [films, setFilms] = useState([])
-	const [error, setError] = useState(null)
+
 	const [loading, setLoading] = useState(false)
 	const { id } = useParams()
 	const navigate = useNavigate()
 
 	const fetchCharacterDetails = async () => {
-		try {
-			setLoading(true)
-			const data = await SwapiAPI.getSingleCharacter(id)
-			setDetails(data)
-			setFilms(data.films)
-			setLoading(false)
-		} catch (err) {
-			setError(err)
-			setDetails(null)
-			console.log(err.message)
-			setLoading(false)
-		}
+		setLoading(true)
+		setDetails([])
+		const data = await SwapiAPI.getSingleCharacter(id)
+		setDetails(data)
+		setFilms(data.films)
+		setLoading(false)
 	}
-
-	console.log(films)
 
 	useEffect(() => {
 		fetchCharacterDetails()
@@ -37,11 +29,11 @@ export default function CharactersDetails() {
 
 	return (
 		<>
-			{error && <NotFound />}
+			{details === 404 && <NotFound />}
 			{loading && <Loading />}
 
 			<div className='d-flex justify-content-center'>
-				{details && (
+				{typeof details === 'object' && (
 					<div className='card m-4 character-details-card'>
 						<h3 className='card-header text-dark'>{details.name}</h3>
 						<div className='card-body'>
@@ -82,14 +74,17 @@ export default function CharactersDetails() {
 							<h6 className='card-subtitle text-muted'>Films</h6>
 						</div>
 						<ul className='list-group list-group-flush'>
-							{films.map(film => (
-								<Link
-									key={getIdFromUrl(film)}
-									to={`/films/${getIdFromUrl(film)}`}
-								>
-									<li className='list-group-item'>Film {getIdFromUrl(film)}</li>
-								</Link>
-							))}
+							{films &&
+								films.map(film => (
+									<Link
+										key={getIdFromUrl(film)}
+										to={`/films/${getIdFromUrl(film)}`}
+									>
+										<li className='list-group-item'>
+											Film {getIdFromUrl(film)}
+										</li>
+									</Link>
+								))}
 						</ul>
 
 						<div className='m-2 pt-4'>

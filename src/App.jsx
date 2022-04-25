@@ -16,8 +16,8 @@ function App() {
 
 			<Routes>
 				<Route path='/' element={<Homepage />} />
-				<Route path='/characters' element={<Characters />} />
-				<Route path='/films' element={<Films />} />
+				<Route path='/characters/' element={<Characters />} />
+				<Route path='/films/' element={<Films />} />
 				<Route path='/characters/:id' element={<CharacterDetails />} />
 				<Route path='/films/:id' element={<FilmDetails />} />
 				<Route path='*' element={<NotFound />} />

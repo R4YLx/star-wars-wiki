@@ -8,7 +8,7 @@ const getFilms = async () => {
 
 		return res.data
 	} catch (err) {
-		throw err.message
+		return err.response.status
 	}
 }
 
@@ -18,17 +18,16 @@ const getCharacters = async page => {
 
 		return res.data
 	} catch (err) {
-		throw err.message
+		return err.response.status
 	}
 }
 
 const getSingleCharacter = async id => {
 	try {
 		const res = await axios.get(`/people/${id}`)
-
 		return res.data
-	} catch {
-		throw Error('404')
+	} catch (err) {
+		return err.response.status
 	}
 }
 
@@ -38,13 +37,17 @@ const getSingleFilm = async id => {
 
 		return res.data
 	} catch (err) {
-		throw err.message
+		return err.response.status
 	}
 }
 
 const search = async (resource, query, page) => {
-	const res = await axios.get(`${resource}/?search=${query}&page=${page}`)
-	return res.data
+	try {
+		const res = await axios.get(`${resource}/?search=${query}&page=${page}`)
+		return res.data
+	} catch (err) {
+		return err.response.status
+	}
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export

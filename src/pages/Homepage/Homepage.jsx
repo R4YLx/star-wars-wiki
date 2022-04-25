@@ -12,6 +12,7 @@ export default function Homepage() {
 	const randomEpisode = Math.floor(Math.random() * (6 - 1) + 1)
 
 	const fetchCrawl = async () => {
+		setData([])
 		setLoading(true)
 		const res = await SwapiAPI.getSingleFilm(randomEpisode)
 		setData(res)
