@@ -1,5 +1,5 @@
 import './FilmsPage.css'
-import Films from '../../components/Films'
+import FilmCard from '../../components/FilmCard'
 import { useEffect, useRef, useState } from 'react'
 import SwapiAPI from '../../services/SwapiAPI'
 import Loading from '../../components/Loading/Loading'
@@ -89,7 +89,7 @@ export default function FilmsPage() {
 
 			{showFilms ? (
 				<>
-					<Films films={films} />
+					<FilmCard films={films} />
 
 					{!loading && (
 						<Pagination

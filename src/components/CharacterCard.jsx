@@ -1,34 +1,32 @@
 import { Link } from 'react-router-dom'
-import { getIdFromUrl } from '../helpers/helpers'
 
-function Films({ films }) {
+function CharacterCard({ characters }) {
 	return (
 		<div className='d-flex flex-wrap justify-content-center'>
-			{films.map(film => (
+			{characters.map((character, index) => (
 				<div
-					key={film.episode_id}
+					key={index}
 					className='card border-secondary m-3 col-md-3 col-sm-4 col-xs-12'
 				>
-					<div className='card-header film-card-header d-flex align-items-center'>
-						<h2>{film.title}</h2>
+					<div className='card-header d-flex align-items-center'>
+						<h2>{character.name}</h2>
 					</div>
 					<div className='card-body'>
 						<p className='text-dark'>
-							<span>Episode: </span>
-							{film.episode_id}
+							<span>Gender: </span>
+							{character.gender}
 						</p>
 						<hr />
 						<p className='text-dark'>
-							<span>Released: </span>
-							{film.release_date}
+							<span>Born: </span>
+							{character.birth_year}
 						</p>
 						<hr />
 						<p className='text-dark'>
-							<span>Characters: </span>
-							{film.characters.length}
+							<span>Appears in: </span>
+							{character.films.length} film(s)
 						</p>
-
-						<Link to={`/films/${getIdFromUrl(film.url)}`}>
+						<Link to={`/characters/${index + 1}`}>
 							<button type='button' className='btn btn-primary'>
 								Read more
 							</button>
@@ -40,4 +38,4 @@ function Films({ films }) {
 	)
 }
 
-export default Films
+export default CharacterCard

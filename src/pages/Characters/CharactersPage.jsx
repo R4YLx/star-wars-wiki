@@ -1,5 +1,5 @@
 import './CharactersPage.css'
-import Characters from '../../components/Characters'
+import CharacterCard from '../../components/CharacterCard'
 import { useEffect, useRef, useState } from 'react'
 import SwapiAPI from '../../services/SwapiAPI'
 import Loading from '../../components/Loading/Loading'
@@ -84,7 +84,7 @@ export default function CharactersPage() {
 
 			{showCharacters ? (
 				<>
-					<Characters characters={characters} />
+					<CharacterCard characters={characters} />
 
 					{!loading && (
 						<Pagination
