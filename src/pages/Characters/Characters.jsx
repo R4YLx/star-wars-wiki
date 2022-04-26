@@ -10,6 +10,8 @@ import { getIdFromUrl } from '../../helpers/helpers'
 export default function Characters() {
 	const [characters, setCharacters] = useState([])
 	const [loading, setLoading] = useState(false)
+	const [showCharacters, setShowCharacters] = useState(true)
+	const [data, setData] = useState([])
 
 	const [searchInput, setSearchInput] = useState([])
 	const [searchData, setSearchData] = useState([])
@@ -20,15 +22,14 @@ export default function Characters() {
 
 	const query = searchParams.get('query')
 
-	const fetchCharacters = async () => {
-		setCharacters([])
+	const fetchCharacters = async page => {
 		setLoading(true)
 		const data = await SwapiAPI.getCharacters(page)
-		setCharacters(data)
+		setCharacters(data.results)
+		setData(data)
 		setLoading(false)
 
 		console.log(data)
-		// setSearchParams({ page: page })
 	}
 
 	const searchSWAPI = async (searchQuery, page) => {
@@ -44,6 +45,8 @@ export default function Characters() {
 		console.log('Hits of characters from API', data.results)
 
 		setLoading(false)
+
+		console.log(data)
 	}
 
 	const handleSubmit = async e => {
@@ -57,10 +60,11 @@ export default function Characters() {
 		setPage(1)
 		searchSWAPI(searchInput, 1)
 		setSearchParams({ query: searchInput })
+		setShowCharacters(false)
 	}
 
 	useEffect(() => {
-		fetchCharacters()
+		fetchCharacters(page)
 	}, [page])
 
 	useEffect(() => {
@@ -81,10 +85,10 @@ export default function Characters() {
 			/>
 			{loading && <Loading />}
 
-			{characters.results && (
+			{showCharacters ? (
 				<>
 					<div className='d-flex flex-wrap justify-content-center'>
-						{characters.results.map((character, index) => (
+						{characters.map((character, index) => (
 							<div
 								key={index}
 								className='card border-secondary m-3 col-md-3 col-sm-4 col-xs-12'
@@ -117,29 +121,31 @@ export default function Characters() {
 						))}
 					</div>
 
-					<div className='d-flex justify-content-between align-items-center p-4'>
-						<button
-							disabled={page === 1}
-							onClick={() => setPage(prevValue => prevValue - 1)}
-							type='button'
-							className='btn btn-secondary'
-						>
-							Previous Page
-						</button>
-						<div className='page'>{page}</div>
-						<button
-							disabled={characters.length < 9}
-							onClick={() => setPage(prevValue => prevValue + 1)}
-							type='button'
-							className='btn btn-secondary'
-						>
-							Next Page
-						</button>
-					</div>
+					{!loading && (
+						<div className='d-flex justify-content-between align-items-center p-4'>
+							<button
+								disabled={!data.previous}
+								onClick={() => setPage(prevValue => prevValue - 1)}
+								type='button'
+								className='btn btn-secondary'
+							>
+								Previous Page
+							</button>
+							<div className='page'>{page}</div>
+							<button
+								disabled={!data.next}
+								onClick={() => setPage(prevValue => prevValue + 1)}
+								type='button'
+								className='btn btn-secondary'
+							>
+								Next Page
+							</button>
+						</div>
+					)}
 				</>
-			)}
+			) : null}
 
-			{Array.isArray(searchData.results) && (
+			{searchData.results && (
 				<>
 					<p className='text-center'>
 						Showing {searchData.count} search results for '{query}'
@@ -181,7 +187,7 @@ export default function Characters() {
 
 					<div className='d-flex justify-content-between align-items-center p-4'>
 						<button
-							disabled={page === 1}
+							disabled={!searchData.previous}
 							onClick={() => setPage(prevValue => prevValue - 1)}
 							type='button'
 							className='btn btn-secondary'
@@ -190,7 +196,7 @@ export default function Characters() {
 						</button>
 						<div className='page'>{page}</div>
 						<button
-							disabled={characters.length < 9}
+							disabled={!searchData.next}
 							onClick={() => setPage(prevValue => prevValue + 1)}
 							type='button'
 							className='btn btn-secondary'

@@ -33,7 +33,7 @@ export default function FilmDetails() {
 			{details === 404 && <NotFound />}
 			{loading && <Loading />}
 			<div className='d-flex justify-content-center'>
-				{typeof details === 'object' && (
+				{!loading && (
 					<div className='card m-4 character-details-card'>
 						<h3 className='card-header text-dark'>{details.title}</h3>
 						<div className='card-body'>
