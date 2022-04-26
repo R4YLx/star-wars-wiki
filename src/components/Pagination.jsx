@@ -1,8 +1,10 @@
-function SearchCharacterPagination({ searchData, onSetPage, page }) {
+import React from 'react'
+
+function CharactersPagination({ data, onSetPage, page, characters }) {
 	return (
 		<div className='d-flex justify-content-between align-items-center p-4'>
 			<button
-				disabled={!searchData.previous}
+				disabled={!data.previous}
 				onClick={() => onSetPage(prevValue => prevValue - 1)}
 				type='button'
 				className='btn btn-secondary'
@@ -10,10 +12,10 @@ function SearchCharacterPagination({ searchData, onSetPage, page }) {
 				Previous Page
 			</button>
 			<div className='page'>
-				{page} / {Math.ceil(searchData.count / searchData.results.length)}
+				{page} / {Math.ceil(data.count / 9)}
 			</div>
 			<button
-				disabled={!searchData.next}
+				disabled={!data.next}
 				onClick={() => onSetPage(prevValue => prevValue + 1)}
 				type='button'
 				className='btn btn-secondary'
@@ -24,4 +26,4 @@ function SearchCharacterPagination({ searchData, onSetPage, page }) {
 	)
 }
 
-export default SearchCharacterPagination
+export default CharactersPagination

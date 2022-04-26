@@ -4,8 +4,8 @@ import Navigation from './components/Navigation'
 import Homepage from './pages/Homepage/Homepage'
 import CharactersPage from './pages/Characters/CharactersPage'
 import CharacterDetailsPage from './pages/CharacterDetails/CharacterDetailsPage'
-import Films from './pages/Films/Films'
-import FilmDetails from './pages/FilmDetails/FilmDetails'
+import FilmsPage from './pages/Films/FilmsPage'
+import FilmDetailsPage from './pages/FilmDetails/FilmDetailsPage'
 import NotFound from './pages/NotFound/NotFound'
 import { Route, Routes } from 'react-router-dom'
 
@@ -17,9 +17,9 @@ function App() {
 			<Routes>
 				<Route path='/' element={<Homepage />} />
 				<Route path='/characters/' element={<CharactersPage />} />
-				<Route path='/films/' element={<Films />} />
+				<Route path='/films/' element={<FilmsPage />} />
 				<Route path='/characters/:id' element={<CharacterDetailsPage />} />
-				<Route path='/films/:id' element={<FilmDetails />} />
+				<Route path='/films/:id' element={<FilmDetailsPage />} />
 				<Route path='*' element={<NotFound />} />
 			</Routes>
 		</div>

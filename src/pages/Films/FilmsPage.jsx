@@ -1,5 +1,5 @@
-import './CharactersPage.css'
-import Characters from '../../components/Characters'
+import './FilmsPage.css'
+import Films from '../../components/Films'
 import { useEffect, useRef, useState } from 'react'
 import SwapiAPI from '../../services/SwapiAPI'
 import Loading from '../../components/Loading/Loading'
@@ -8,14 +8,14 @@ import SearchBar from '../../components/SearchBar'
 import { useSearchParams } from 'react-router-dom'
 
 import Pagination from '../../components/Pagination'
-import SearchCharacter from '../../components/SearchCharacter'
+import SearchFilm from '../../components/SearchFilm'
 import SearchPagination from '../../components/SearchPagination'
 
-export default function CharactersPage() {
-	const [characters, setCharacters] = useState([])
+export default function FilmsPage() {
+	const [films, setFilms] = useState([])
 	const [data, setData] = useState([])
 	const [loading, setLoading] = useState(false)
-	const [showCharacters, setShowCharacters] = useState(true)
+	const [showFilms, setShowFilms] = useState(true)
 
 	const [searchInput, setSearchInput] = useState([])
 	const [searchData, setSearchData] = useState([])
@@ -26,28 +26,33 @@ export default function CharactersPage() {
 
 	const query = searchParams.get('query')
 
-	const fetchCharacters = async page => {
+	const fetchFilms = async page => {
 		setLoading(true)
-		const data = await SwapiAPI.getCharacters(page)
-		setCharacters(data.results)
+		const data = await SwapiAPI.getFilms(page)
+		setFilms(data.results)
 		setData(data)
 		setLoading(false)
 	}
 
 	const searchSWAPI = async (searchQuery, page) => {
-		setCharacters([])
+		setFilms([])
 		setLoading(true)
 		setSearchData([])
 
-		const data = await SwapiAPI.search('people', searchQuery, page)
+		const data = await SwapiAPI.search('films', searchQuery, page)
 
 		setSearchData(data)
 
+		console.log('Data from API:', data)
+		console.log('Hits of characters from API', data.results)
+
 		setLoading(false)
+
+		console.log(data)
 	}
 
 	const handleSubmit = async e => {
-		setCharacters([])
+		setFilms([])
 		e.preventDefault()
 
 		if (!searchInput.length) {
@@ -57,11 +62,11 @@ export default function CharactersPage() {
 		setPage(1)
 		searchSWAPI(searchInput, 1)
 		setSearchParams({ query: searchInput })
-		setShowCharacters(false)
+		setShowFilms(false)
 	}
 
 	useEffect(() => {
-		fetchCharacters(page)
+		fetchFilms(page)
 	}, [page])
 
 	useEffect(() => {
@@ -82,16 +87,16 @@ export default function CharactersPage() {
 			/>
 			{loading && <Loading />}
 
-			{showCharacters ? (
+			{showFilms ? (
 				<>
-					<Characters characters={characters} />
+					<Films films={films} />
 
 					{!loading && (
 						<Pagination
 							data={data}
 							onSetPage={setPage}
 							page={page}
-							characters={characters}
+							films={films}
 						/>
 					)}
 				</>
@@ -99,7 +104,7 @@ export default function CharactersPage() {
 
 			{searchData.results && (
 				<>
-					<SearchCharacter searchData={searchData} query={query} />
+					<SearchFilm searchData={searchData} query={query} />
 
 					<SearchPagination
 						searchData={searchData}

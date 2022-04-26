@@ -2,9 +2,9 @@ import axios from 'axios'
 
 axios.defaults.baseURL = 'https://swapi.dev/api'
 
-const getFilms = async () => {
+const getFilms = async page => {
 	try {
-		const res = await axios.get('/films')
+		const res = await axios.get(`/films/?page=${page}`)
 
 		return res.data
 	} catch (err) {

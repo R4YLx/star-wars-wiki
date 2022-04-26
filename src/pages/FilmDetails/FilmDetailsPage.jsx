@@ -1,38 +1,39 @@
-import './CharacterDetailsPage.css'
 import SwapiAPI from '../../services/SwapiAPI'
 import Loading from '../../components/Loading/Loading'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+
 import NotFound from '../NotFound/NotFound'
-import CharacterDetails from '../../components/CharacterDetails'
+import FilmDetails from '../../components/FilmDetails'
 
-export default function CharactersDetails() {
+export default function FilmDetailsPage() {
 	const [details, setDetails] = useState([])
-	const [films, setFilms] = useState([])
-
+	const [characters, setCharacters] = useState([])
 	const [loading, setLoading] = useState(false)
 	const { id } = useParams()
 
-	const fetchCharacterDetails = async () => {
+	const fetchFilmDetails = async () => {
 		setLoading(true)
 		setDetails([])
-		const data = await SwapiAPI.getSingleCharacter(id)
+		const data = await SwapiAPI.getSingleFilm(id)
+
 		setDetails(data)
-		setFilms(data.films)
+		setCharacters(data.characters)
 		setLoading(false)
+
+		console.log(data)
 	}
 
 	useEffect(() => {
-		fetchCharacterDetails()
+		fetchFilmDetails()
 	}, [])
 
 	return (
 		<>
 			{details === 404 && <NotFound />}
 			{loading && <Loading />}
-
 			<div className='d-flex justify-content-center'>
-				{!loading && <CharacterDetails details={details} films={films} />}
+				{!loading && <FilmDetails details={details} characters={characters} />}
 			</div>
 		</>
 	)
