@@ -31,6 +31,7 @@ export default function Characters() {
 	}
 
 	const searchSWAPI = async (searchQuery, page) => {
+		setCharacters([])
 		setLoading(true)
 		setSearchResult(null)
 
@@ -43,7 +44,6 @@ export default function Characters() {
 		console.log('Hits of characters from API', data.results)
 
 		setLoading(false)
-		setCharacters([])
 	}
 
 	const handleSubmit = async e => {
@@ -81,96 +81,124 @@ export default function Characters() {
 			/>
 			{loading && <Loading />}
 
-			<div className='d-flex flex-wrap justify-content-center'>
-				{characters &&
-					characters.map((character, index) => (
-						<div
-							key={index}
-							className='card border-secondary m-3 col-md-3 col-sm-4 col-xs-12'
-						>
-							<div className='card-header d-flex align-items-center'>
-								<h2>{character.name}</h2>
-							</div>
-							<div className='card-body'>
-								<p className='text-dark'>
-									<span>Gender: </span>
-									{character.gender}
-								</p>
-								<hr />
-								<p className='text-dark'>
-									<span>Born: </span>
-									{character.birth_year}
-								</p>
-								<hr />
-								<p className='text-dark'>
-									<span>Appears in: </span>
-									{character.films.length} film(s)
-								</p>
-								<Link to={`/characters/${index + 1}`}>
-									<button type='button' className='btn btn-primary'>
-										Read more
-									</button>
-								</Link>
-							</div>
-						</div>
-					))}
-			</div>
-
-			<div className='d-flex flex-wrap justify-content-center'>
-				{searchResult &&
-					searchResult.map((character, index) => (
-						<div
-							key={index}
-							className='card border-secondary m-3 col-md-3 col-sm-4 col-xs-12'
-						>
-							<div className='card-header d-flex align-items-center'>
-								<h2>{character.name}</h2>
-							</div>
-							<div className='card-body'>
-								<p className='text-dark'>
-									<span>Gender: </span>
-									{character.gender}
-								</p>
-								<hr />
-								<p className='text-dark'>
-									<span>Born: </span>
-									{character.birth_year}
-								</p>
-								<hr />
-								<p className='text-dark'>
-									<span>Appears in: </span>
-									{character.films.length} film(s)
-								</p>
-								<Link to={`/characters/${getIdFromUrl(character.url)}`}>
-									<button type='button' className='btn btn-primary'>
-										Read more
-									</button>
-								</Link>
-							</div>
-						</div>
-					))}
-			</div>
-
 			{characters && (
-				<div className='d-flex justify-content-between align-items-center p-4'>
-					<button
-						disabled={page === 1}
-						onClick={() => setPage(prevValue => prevValue - 1)}
-						type='button'
-						className='btn btn-secondary'
-					>
-						Previous Page
-					</button>
-					<div className='page'>{page}</div>
-					<button
-						disabled={characters.length < 9}
-						onClick={() => setPage(prevValue => prevValue + 1)}
-						type='button'
-						className='btn btn-secondary'
-					>
-						Next Page
-					</button>
-				</div>
+				<>
+					<div className='d-flex flex-wrap justify-content-center'>
+						{characters.map((character, index) => (
+							<div
+								key={index}
+								className='card border-secondary m-3 col-md-3 col-sm-4 col-xs-12'
+							>
+								<div className='card-header d-flex align-items-center'>
+									<h2>{character.name}</h2>
+								</div>
+								<div className='card-body'>
+									<p className='text-dark'>
+										<span>Gender: </span>
+										{character.gender}
+									</p>
+									<hr />
+									<p className='text-dark'>
+										<span>Born: </span>
+										{character.birth_year}
+									</p>
+									<hr />
+									<p className='text-dark'>
+										<span>Appears in: </span>
+										{character.films.length} film(s)
+									</p>
+									<Link to={`/characters/${index + 1}`}>
+										<button type='button' className='btn btn-primary'>
+											Read more
+										</button>
+									</Link>
+								</div>
+							</div>
+						))}
+					</div>
+
+					<div className='d-flex justify-content-between align-items-center p-4'>
+						<button
+							disabled={page === 1}
+							onClick={() => setPage(prevValue => prevValue - 1)}
+							type='button'
+							className='btn btn-secondary'
+						>
+							Previous Page
+						</button>
+						<div className='page'>{page}</div>
+						<button
+							disabled={characters.length < 9}
+							onClick={() => setPage(prevValue => prevValue + 1)}
+							type='button'
+							className='btn btn-secondary'
+						>
+							Next Page
+						</button>
+					</div>
+				</>
+			)}
+
+			{Array.isArray(searchResult) && (
+				<>
+					<p className='text-center'>
+						Showing {searchData.count} search results for '{query}'
+					</p>
+
+					<div className='d-flex flex-wrap justify-content-center'>
+						{searchResult.map((character, index) => (
+							<div
+								key={index}
+								className='card border-secondary m-3 col-md-3 col-sm-4 col-xs-12'
+							>
+								<div className='card-header d-flex align-items-center'>
+									<h2>{character.name}</h2>
+								</div>
+								<div className='card-body'>
+									<p className='text-dark'>
+										<span>Gender: </span>
+										{character.gender}
+									</p>
+									<hr />
+									<p className='text-dark'>
+										<span>Born: </span>
+										{character.birth_year}
+									</p>
+									<hr />
+									<p className='text-dark'>
+										<span>Appears in: </span>
+										{character.films.length} film(s)
+									</p>
+									<Link to={`/characters/${getIdFromUrl(character.url)}`}>
+										<button type='button' className='btn btn-primary'>
+											Read more
+										</button>
+									</Link>
+								</div>
+							</div>
+						))}
+					</div>
+
+					<div className='d-flex justify-content-between align-items-center p-4'>
+						<button
+							disabled={page === 1}
+							onClick={() => setPage(prevValue => prevValue - 1)}
+							type='button'
+							className='btn btn-secondary'
+						>
+							Previous Page
+						</button>
+						<div className='page'>{page}</div>
+						<button
+							disabled={characters.length < 9}
+							onClick={() => setPage(prevValue => prevValue + 1)}
+							type='button'
+							className='btn btn-secondary'
+						>
+							Next Page
+						</button>
+					</div>
+				</>
 			)}
 		</>
 	)
