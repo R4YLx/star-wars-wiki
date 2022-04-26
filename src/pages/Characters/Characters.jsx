@@ -48,6 +48,7 @@ export default function Characters() {
 
 	const handleSubmit = async e => {
 		e.preventDefault()
+		setCharacters([])
 
 		if (!searchInput.length) {
 			return
@@ -140,7 +141,7 @@ export default function Characters() {
 									<span>Appears in: </span>
 									{character.films.length} film(s)
 								</p>
-								<Link to={`/characters/${index + 1}`}>
+								<Link to={`/characters/${getIdFromUrl(character.url)}`}>
 									<button type='button' className='btn btn-primary'>
 										Read more
 									</button>
