@@ -3,7 +3,7 @@ import 'bootswatch/dist/lux/bootstrap.min.css'
 import Navigation from './components/Navigation'
 import Homepage from './pages/Homepage/Homepage'
 import CharactersPage from './pages/Characters/CharactersPage'
-import CharacterDetails from './pages/CharacterDetails/CharacterDetails'
+import CharacterDetailsPage from './pages/CharacterDetails/CharacterDetailsPage'
 import Films from './pages/Films/Films'
 import FilmDetails from './pages/FilmDetails/FilmDetails'
 import NotFound from './pages/NotFound/NotFound'
@@ -18,7 +18,7 @@ function App() {
 				<Route path='/' element={<Homepage />} />
 				<Route path='/characters/' element={<CharactersPage />} />
 				<Route path='/films/' element={<Films />} />
-				<Route path='/characters/:id' element={<CharacterDetails />} />
+				<Route path='/characters/:id' element={<CharacterDetailsPage />} />
 				<Route path='/films/:id' element={<FilmDetails />} />
 				<Route path='*' element={<NotFound />} />
 			</Routes>
