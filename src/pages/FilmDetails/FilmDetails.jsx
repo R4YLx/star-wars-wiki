@@ -16,10 +16,12 @@ export default function FilmDetails() {
 		setLoading(true)
 		setDetails([])
 		const data = await SwapiAPI.getSingleFilm(id)
-		console.log(id)
+
 		setDetails(data)
 		setCharacters(data.characters)
 		setLoading(false)
+
+		console.log(data)
 	}
 
 	useEffect(() => {
@@ -30,7 +32,7 @@ export default function FilmDetails() {
 		<>
 			{details === 404 && <NotFound />}
 			{loading && <Loading />}
-			<div className='d-flex  justify-content-center'>
+			<div className='d-flex justify-content-center'>
 				{typeof details === 'object' && (
 					<div className='card m-4 character-details-card'>
 						<h3 className='card-header text-dark'>{details.title}</h3>

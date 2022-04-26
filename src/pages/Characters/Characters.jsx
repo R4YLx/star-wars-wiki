@@ -13,7 +13,7 @@ export default function Characters() {
 
 	const [searchInput, setSearchInput] = useState([])
 	const [searchData, setSearchData] = useState([])
-	const [searchResult, setSearchResult] = useState(null)
+
 	const [page, setPage] = useState(1)
 	const [searchParams, setSearchParams] = useSearchParams()
 	const searchInputRef = useRef()
@@ -24,21 +24,21 @@ export default function Characters() {
 		setCharacters([])
 		setLoading(true)
 		const data = await SwapiAPI.getCharacters(page)
-		setCharacters(data.results)
+		setCharacters(data)
 		setLoading(false)
 
+		console.log(data)
 		// setSearchParams({ page: page })
 	}
 
 	const searchSWAPI = async (searchQuery, page) => {
 		setCharacters([])
 		setLoading(true)
-		setSearchResult(null)
+		setSearchData([])
 
 		const data = await SwapiAPI.search('people', searchQuery, page)
 
 		setSearchData(data)
-		setSearchResult(data.results)
 
 		console.log('Data from API:', data)
 		console.log('Hits of characters from API', data.results)
@@ -47,8 +47,8 @@ export default function Characters() {
 	}
 
 	const handleSubmit = async e => {
-		e.preventDefault()
 		setCharacters([])
+		e.preventDefault()
 
 		if (!searchInput.length) {
 			return
@@ -81,10 +81,10 @@ export default function Characters() {
 			/>
 			{loading && <Loading />}
 
-			{characters && (
+			{characters.results && (
 				<>
 					<div className='d-flex flex-wrap justify-content-center'>
-						{characters.map((character, index) => (
+						{characters.results.map((character, index) => (
 							<div
 								key={index}
 								className='card border-secondary m-3 col-md-3 col-sm-4 col-xs-12'
@@ -139,14 +139,14 @@ export default function Characters() {
 				</>
 			)}
 
-			{Array.isArray(searchResult) && (
+			{Array.isArray(searchData.results) && (
 				<>
 					<p className='text-center'>
 						Showing {searchData.count} search results for '{query}'
 					</p>
 
 					<div className='d-flex flex-wrap justify-content-center'>
-						{searchResult.map((character, index) => (
+						{searchData.results.map((character, index) => (
 							<div
 								key={index}
 								className='card border-secondary m-3 col-md-3 col-sm-4 col-xs-12'
