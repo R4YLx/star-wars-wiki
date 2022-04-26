@@ -15,7 +15,9 @@ export default function Homepage() {
 	const fetchCrawl = async () => {
 		setData([])
 		setLoading(true)
+
 		const res = await SwapiAPI.getSingleFilm(randomEpisode)
+
 		setData(res)
 		setLoading(false)
 	}
@@ -28,7 +30,7 @@ export default function Homepage() {
 		<>
 			{data === 404 && <NotFound />}
 			{loading && <Loading />}
-			{typeof data === 'object' && (
+			{data && (
 				<Crawl
 					style={{ whiteSpace: 'pre-wrap' }}
 					title={`Episode ${data.episode_id}`}

@@ -34,7 +34,6 @@ const getSingleCharacter = async id => {
 const getSingleFilm = async id => {
 	try {
 		const res = await axios.get(`/films/${id}`)
-
 		return res.data
 	} catch (err) {
 		return err.response.status
