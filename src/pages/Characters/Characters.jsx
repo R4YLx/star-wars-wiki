@@ -131,7 +131,9 @@ export default function Characters() {
 							>
 								Previous Page
 							</button>
-							<div className='page'>{page}</div>
+							<div className='page'>
+								{page} / {Math.ceil(data.count / characters.length)}
+							</div>
 							<button
 								disabled={!data.next}
 								onClick={() => setPage(prevValue => prevValue + 1)}
@@ -194,7 +196,9 @@ export default function Characters() {
 						>
 							Previous Page
 						</button>
-						<div className='page'>{page}</div>
+						<div className='page'>
+							{page} / {Math.ceil(searchData.count / searchData.results.length)}
+						</div>
 						<button
 							disabled={!searchData.next}
 							onClick={() => setPage(prevValue => prevValue + 1)}
