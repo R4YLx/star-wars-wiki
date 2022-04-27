@@ -9,16 +9,29 @@ import NotFound from '../NotFound/NotFound'
 export default function Homepage() {
 	const [data, setData] = useState()
 	const [loading, setLoading] = useState(false)
+	const [error, setError] = useState(null)
 
 	const randomEpisode = Math.floor(Math.random() * (6 - 1) + 1)
 
 	const fetchCrawl = async () => {
 		setLoading(true)
+		try {
+			const res = await SwapiAPI.getSingleFilm(randomEpisode)
 
-		const res = await SwapiAPI.getSingleFilm(randomEpisode)
+			if (!res.data) {
+				throw new Error(res.statusText)
+			}
 
-		setData(res)
-		setLoading(false)
+			setData(res.data)
+			setLoading(false)
+		} catch (err) {
+			if (err.name === 'AbortError') {
+				console.log('Fetch was aborted')
+			} else {
+				setLoading(false)
+				setError('Fetch data could not')
+			}
+		}
 	}
 
 	useEffect(() => {
@@ -37,6 +50,8 @@ export default function Homepage() {
 					text={data.opening_crawl}
 				/>
 			)}
+
+			{error && <NotFound error={error} />}
 		</>
 	)
 }
