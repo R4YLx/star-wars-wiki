@@ -78,7 +78,6 @@ export default function CharactersPage() {
 				onHandleSubmit={handleSubmit}
 				onSetSearchInput={setSearchInput}
 				onSearchInput={searchInput}
-				onSearchInputRef={searchInputRef}
 			/>
 			{loading && <Loading />}
 
@@ -87,12 +86,7 @@ export default function CharactersPage() {
 					<CharacterCard characters={characters} />
 
 					{!loading && (
-						<Pagination
-							data={data}
-							onSetPage={setPage}
-							page={page}
-							characters={characters}
-						/>
+						<Pagination data={data} onSetPage={setPage} page={page} />
 					)}
 				</>
 			) : null}

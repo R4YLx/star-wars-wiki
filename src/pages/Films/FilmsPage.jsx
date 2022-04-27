@@ -83,7 +83,6 @@ export default function FilmsPage() {
 				onHandleSubmit={handleSubmit}
 				onSetSearchInput={setSearchInput}
 				onSearchInput={searchInput}
-				onSearchInputRef={searchInputRef}
 			/>
 			{loading && <Loading />}
 

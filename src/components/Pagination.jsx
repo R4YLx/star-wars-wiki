@@ -1,6 +1,6 @@
 import React from 'react'
 
-function CharactersPagination({ data, onSetPage, page, characters }) {
+function CharactersPagination({ data, onSetPage, page }) {
 	return (
 		<div className='d-flex justify-content-between align-items-center p-4'>
 			<button
