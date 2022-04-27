@@ -40,7 +40,6 @@ export default function Homepage() {
 
 	return (
 		<>
-			{data === 404 && <NotFound />}
 			{loading && <Loading />}
 			{data && (
 				<Crawl
