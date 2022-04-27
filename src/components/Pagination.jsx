@@ -1,6 +1,6 @@
 function CharactersPagination({ data, onSetPage, page }) {
 	return (
-		<div className='d-flex justify-content-between align-items-center p-4'>
+		<div className='d-flex justify-content-between align-items-center p-4 animate__animated animate__fadeInUp animate__delay-2s'>
 			<button
 				disabled={!data.previous}
 				onClick={() => onSetPage(prevValue => prevValue - 1)}
