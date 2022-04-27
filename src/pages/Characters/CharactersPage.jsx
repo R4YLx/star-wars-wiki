@@ -21,7 +21,6 @@ export default function CharactersPage() {
 	const [searchParams, setSearchParams] = useSearchParams()
 
 	const query = searchParams.get('query')
-	// const pages = searchParams.get('page')
 
 	const fetchCharacters = async page => {
 		setLoading(true)
