@@ -1,4 +1,3 @@
-import './CharactersPage.css'
 import CharacterCard from '../../components/CharacterCard'
 import { useEffect, useState } from 'react'
 import SwapiAPI from '../../services/SwapiAPI'
@@ -80,7 +79,7 @@ export default function CharactersPage() {
 				<>
 					{query && (
 						<p className='text-center'>
-							Showing {data.count} search results for '{query}'
+							Showing {data.count} search result(s) for '{query}'
 						</p>
 					)}
 

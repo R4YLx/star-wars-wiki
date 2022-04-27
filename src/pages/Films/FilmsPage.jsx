@@ -79,7 +79,7 @@ export default function FilmsPage() {
 				<>
 					{query && (
 						<p className='text-center'>
-							Showing {data.count} search results for '{query}'
+							Showing {data.count} search result(s) for '{query}'
 						</p>
 					)}
 

@@ -5,12 +5,12 @@ export default function SearchBar({
 }) {
 	return (
 		<>
-			<div className='d-flex justify-content-center m-4'>
-				<form className='d-flex' onSubmit={onHandleSubmit}>
+			<div className='d-flex justify-content-center m-4 animate__animated animate__fadeIn'>
+				<form className='d-flex align-items-center' onSubmit={onHandleSubmit}>
 					<input
 						onChange={e => onSetSearchInput(e.target.value)}
 						value={onSearchInput}
-						className='form-control me-sm-2'
+						className='form-control me-sm-2 align-items-stretch'
 						type='text'
 						placeholder='Use the Force...'
 					/>
