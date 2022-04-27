@@ -1,6 +1,6 @@
 import './CharactersPage.css'
 import CharacterCard from '../../components/CharacterCard'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import SwapiAPI from '../../services/SwapiAPI'
 import Loading from '../../components/Loading/Loading'
 
@@ -21,10 +21,11 @@ export default function CharactersPage() {
 	const [searchData, setSearchData] = useState([])
 
 	const [page, setPage] = useState(1)
-	const [searchParams, setSearchParams] = useSearchParams()
-	const searchInputRef = useRef()
+
+	const [searchParams, setSearchParams] = useSearchParams('')
 
 	const query = searchParams.get('query')
+	// const pages = searchParams.get('page')
 
 	const fetchCharacters = async page => {
 		setLoading(true)

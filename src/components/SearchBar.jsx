@@ -2,7 +2,6 @@ export default function SearchBar({
 	onHandleSubmit,
 	onSetSearchInput,
 	onSearchInput,
-	onSearchInputRef,
 }) {
 	return (
 		<>

@@ -1,6 +1,6 @@
-import React from 'react'
-
 function CharactersPagination({ data, onSetPage, page }) {
+	console.log(data.results)
+
 	return (
 		<div className='d-flex justify-content-between align-items-center p-4'>
 			<button
@@ -12,7 +12,7 @@ function CharactersPagination({ data, onSetPage, page }) {
 				Previous Page
 			</button>
 			<div className='page'>
-				{page} / {Math.ceil(data.count / 9)}
+				{page} / {Math.ceil(data.count / 10)}
 			</div>
 			<button
 				disabled={!data.next}
