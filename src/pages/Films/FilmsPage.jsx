@@ -56,7 +56,8 @@ export default function FilmsPage() {
 
 	useEffect(() => {
 		fetchFilms(page)
-	}, [page])
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
 
 	useEffect(() => {
 		if (!query) {
