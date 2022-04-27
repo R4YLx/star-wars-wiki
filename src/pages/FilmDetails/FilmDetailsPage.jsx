@@ -10,18 +10,29 @@ export default function FilmDetailsPage() {
 	const [details, setDetails] = useState([])
 	const [characters, setCharacters] = useState([])
 	const [loading, setLoading] = useState(false)
+	const [error, setError] = useState(null)
 	const { id } = useParams()
 
 	const fetchFilmDetails = async () => {
 		setLoading(true)
-		setDetails([])
-		const data = await SwapiAPI.getSingleFilm(id)
+		try {
+			const res = await SwapiAPI.getSingleFilm(id)
 
-		setDetails(data)
-		setCharacters(data.characters)
-		setLoading(false)
+			if (!res.data) {
+				throw new Error(res.statusText)
+			}
 
-		console.log(data)
+			setDetails(res.data)
+			setCharacters(res.data.characters)
+			setLoading(false)
+		} catch (err) {
+			if (err.name === 'AbortError') {
+				console.log('Fetch was aborted')
+			} else {
+				setLoading(false)
+				setError('Fetch data could not')
+			}
+		}
 	}
 
 	useEffect(() => {
@@ -30,11 +41,13 @@ export default function FilmDetailsPage() {
 
 	return (
 		<>
-			{details === 404 && <NotFound />}
 			{loading && <Loading />}
+
 			<div className='d-flex justify-content-center'>
 				{!loading && <FilmDetails details={details} characters={characters} />}
 			</div>
+
+			{error && <NotFound error={error} />}
 		</>
 	)
 }

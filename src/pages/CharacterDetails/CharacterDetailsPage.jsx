@@ -9,17 +9,25 @@ import CharacterDetails from '../../components/CharacterDetails'
 export default function CharactersDetails() {
 	const [details, setDetails] = useState([])
 	const [films, setFilms] = useState([])
-
 	const [loading, setLoading] = useState(false)
+	const [error, setError] = useState(null)
 	const { id } = useParams()
 
 	const fetchCharacterDetails = async () => {
 		setLoading(true)
-		setDetails([])
-		const data = await SwapiAPI.getSingleCharacter(id)
-		setDetails(data)
-		setFilms(data.films)
-		setLoading(false)
+		try {
+			const res = await SwapiAPI.getSingleCharacter(id)
+			setDetails(res.data)
+			setFilms(res.data.films)
+			setLoading(false)
+		} catch (err) {
+			if (err.name === 'AbortError') {
+				console.log('Fetch was aborted')
+			} else {
+				setLoading(false)
+				setError('Fetch data could not')
+			}
+		}
 	}
 
 	useEffect(() => {
@@ -28,12 +36,13 @@ export default function CharactersDetails() {
 
 	return (
 		<>
-			{details === 404 && <NotFound />}
 			{loading && <Loading />}
 
 			<div className='d-flex justify-content-center'>
 				{!loading && <CharacterDetails details={details} films={films} />}
 			</div>
+
+			{error && <NotFound error={error} />}
 		</>
 	)
 }

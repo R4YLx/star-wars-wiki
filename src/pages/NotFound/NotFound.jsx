@@ -1,10 +1,12 @@
 import notFoundImg from '../../assets/404.gif'
 import './NotFound.css'
 
-export default function NotFound() {
+export default function NotFound({ error }) {
 	return (
 		<>
-			<h1 className='text-center text-white'>404: Page not found</h1>
+			<div className='alert alert-danger text-center' role='alert'>
+				{error}
+			</div>
 
 			<div className='not-found d-flex justify-content-center m-4'>
 				<img src={notFoundImg} alt='' />
