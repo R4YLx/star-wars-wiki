@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { getIdFromUrl } from '../helpers/helpers'
 
 function CharacterCard({ characters }) {
 	return (
@@ -26,7 +27,7 @@ function CharacterCard({ characters }) {
 							<span>Appears in: </span>
 							{character.films.length} film(s)
 						</p>
-						<Link to={`/characters/${index + 1}`}>
+						<Link to={`/characters/${getIdFromUrl(character.url)}`}>
 							<button type='button' className='btn btn-primary'>
 								Read more
 							</button>
