@@ -36,6 +36,7 @@ export default function Homepage() {
 
 	useEffect(() => {
 		fetchCrawl()
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	return (

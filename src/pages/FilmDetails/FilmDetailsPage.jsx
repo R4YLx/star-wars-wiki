@@ -37,6 +37,7 @@ export default function FilmDetailsPage() {
 
 	useEffect(() => {
 		fetchFilmDetails()
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	return (

@@ -32,6 +32,7 @@ export default function CharactersDetails() {
 
 	useEffect(() => {
 		fetchCharacterDetails()
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	return (
