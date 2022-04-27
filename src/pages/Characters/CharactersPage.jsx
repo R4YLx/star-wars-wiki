@@ -8,21 +8,17 @@ import SearchBar from '../../components/SearchBar'
 import { useSearchParams } from 'react-router-dom'
 
 import Pagination from '../../components/Pagination'
-import SearchCharacter from '../../components/SearchCharacter'
-import SearchPagination from '../../components/SearchPagination'
 
 export default function CharactersPage() {
 	const [characters, setCharacters] = useState([])
 	const [data, setData] = useState([])
 	const [loading, setLoading] = useState(false)
-	const [showCharacters, setShowCharacters] = useState(true)
 
 	const [searchInput, setSearchInput] = useState([])
-	const [searchData, setSearchData] = useState([])
 
 	const [page, setPage] = useState(1)
 
-	const [searchParams, setSearchParams] = useSearchParams('')
+	const [searchParams, setSearchParams] = useSearchParams()
 
 	const query = searchParams.get('query')
 	// const pages = searchParams.get('page')
@@ -38,11 +34,11 @@ export default function CharactersPage() {
 	const searchSWAPI = async (searchQuery, page) => {
 		setCharacters([])
 		setLoading(true)
-		setSearchData([])
 
 		const data = await SwapiAPI.search('people', searchQuery, page)
 
-		setSearchData(data)
+		setCharacters(data.results)
+		setData(data)
 
 		setLoading(false)
 	}
@@ -58,8 +54,10 @@ export default function CharactersPage() {
 		setPage(1)
 		searchSWAPI(searchInput, 1)
 		setSearchParams({ query: searchInput })
-		setShowCharacters(false)
 	}
+
+	console.log('Data', data)
+	console.log('Characters', characters)
 
 	useEffect(() => {
 		fetchCharacters(page)
@@ -82,25 +80,18 @@ export default function CharactersPage() {
 			/>
 			{loading && <Loading />}
 
-			{showCharacters ? (
+			{data && (
 				<>
+					{query && (
+						<p className='text-center'>
+							Showing {data.count} search results for '{query}'
+						</p>
+					)}
 					<CharacterCard characters={characters} />
 
 					{!loading && (
 						<Pagination data={data} onSetPage={setPage} page={page} />
 					)}
-				</>
-			) : null}
-
-			{searchData.results && (
-				<>
-					<SearchCharacter searchData={searchData} query={query} />
-
-					<SearchPagination
-						searchData={searchData}
-						onSetPage={setPage}
-						page={page}
-					/>
 				</>
 			)}
 		</>

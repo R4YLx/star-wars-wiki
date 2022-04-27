@@ -9,7 +9,6 @@ import { useSearchParams } from 'react-router-dom'
 
 import Pagination from '../../components/Pagination'
 import SearchFilm from '../../components/SearchFilm'
-import SearchPagination from '../../components/SearchPagination'
 
 export default function FilmsPage() {
 	const [films, setFilms] = useState([])
@@ -101,7 +100,7 @@ export default function FilmsPage() {
 				</>
 			) : null}
 
-			{searchData.results && (
+			{/* {searchData.results && (
 				<>
 					<SearchFilm searchData={searchData} query={query} />
 
@@ -111,7 +110,7 @@ export default function FilmsPage() {
 						page={page}
 					/>
 				</>
-			)}
+			)} */}
 		</>
 	)
 }

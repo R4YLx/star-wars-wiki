@@ -7,13 +7,12 @@ import Loading from '../../components/Loading/Loading'
 import NotFound from '../NotFound/NotFound'
 
 export default function Homepage() {
-	const [data, setData] = useState([])
+	const [data, setData] = useState()
 	const [loading, setLoading] = useState(false)
 
 	const randomEpisode = Math.floor(Math.random() * (6 - 1) + 1)
 
 	const fetchCrawl = async () => {
-		setData([])
 		setLoading(true)
 
 		const res = await SwapiAPI.getSingleFilm(randomEpisode)

@@ -1,4 +1,5 @@
 import './App.css'
+import 'animate.css'
 import 'bootswatch/dist/lux/bootstrap.min.css'
 import Navigation from './components/Navigation'
 import Homepage from './pages/Homepage/Homepage'

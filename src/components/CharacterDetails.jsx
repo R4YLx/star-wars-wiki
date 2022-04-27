@@ -4,7 +4,7 @@ import { getIdFromUrl } from '../helpers/helpers'
 function CharacterDetails({ details, films }) {
 	const navigate = useNavigate()
 	return (
-		<div className='card m-4 character-details-card'>
+		<div className='card m-4 character-details-card animate__animated animate__fadeInUp animate__delay-2s'>
 			<h3 className='card-header text-dark'>{details.name}</h3>
 			<div className='card-body'>
 				<h5 className='card-title text-dark'>Attributes</h5>

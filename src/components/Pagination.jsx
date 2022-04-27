@@ -1,6 +1,4 @@
 function CharactersPagination({ data, onSetPage, page }) {
-	console.log(data.results)
-
 	return (
 		<div className='d-flex justify-content-between align-items-center p-4'>
 			<button

@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 function FilmDetails({ details, characters }) {
 	const navigate = useNavigate()
 	return (
-		<div className='card m-4 character-details-card'>
+		<div className='card m-4 character-details-card animate__animated animate__fadeInUp animate__delay-2s'>
 			<h3 className='card-header text-dark'>{details.title}</h3>
 			<div className='card-body'>
 				<h5 className='card-title text-dark'>Attributes</h5>

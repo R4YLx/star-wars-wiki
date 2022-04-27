@@ -3,7 +3,7 @@ import { getIdFromUrl } from '../helpers/helpers'
 
 function FilmCard({ films }) {
 	return (
-		<div className='d-flex flex-wrap justify-content-center'>
+		<div className='d-flex flex-wrap justify-content-center animate__animated animate__fadeInUp animate__delay-2s'>
 			{films.map(film => (
 				<div
 					key={film.episode_id}

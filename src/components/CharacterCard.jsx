@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 function CharacterCard({ characters }) {
 	return (
-		<div className='d-flex flex-wrap justify-content-center'>
+		<div className='d-flex flex-wrap justify-content-center animate__animated animate__fadeInUp animate__delay-2s'>
 			{characters.map((character, index) => (
 				<div
 					key={index}

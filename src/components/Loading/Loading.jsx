@@ -4,11 +4,13 @@ import './Loading.css'
 export default function Loading() {
 	return (
 		<>
-			<div className='d-flex justify-content-center m-4'>
+			<div className='d-flex justify-content-center m-4 animate__animated animate__fadeInDown'>
 				<img src={loadingImg} alt='' />
 			</div>
 
-			<h1 className='text-center text-light'>Loading...</h1>
+			<h1 className='text-center text-light animate__animated animate__fadeInDown'>
+				Loading...
+			</h1>
 		</>
 	)
 }
