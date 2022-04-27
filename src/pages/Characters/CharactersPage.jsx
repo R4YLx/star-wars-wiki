@@ -20,7 +20,7 @@ export default function CharactersPage() {
 
 	const [searchParams, setSearchParams] = useSearchParams()
 
-	const query = searchParams.get('query')
+	const query = searchParams.get('search')
 	// const pages = searchParams.get('page')
 
 	const fetchCharacters = async page => {
@@ -56,9 +56,6 @@ export default function CharactersPage() {
 		setSearchParams({ query: searchInput })
 	}
 
-	console.log('Data', data)
-	console.log('Characters', characters)
-
 	useEffect(() => {
 		fetchCharacters(page)
 	}, [page])
@@ -87,6 +84,7 @@ export default function CharactersPage() {
 							Showing {data.count} search results for '{query}'
 						</p>
 					)}
+
 					<CharacterCard characters={characters} />
 
 					{!loading && (

@@ -8,22 +8,19 @@ import SearchBar from '../../components/SearchBar'
 import { useSearchParams } from 'react-router-dom'
 
 import Pagination from '../../components/Pagination'
-import SearchFilm from '../../components/SearchFilm'
 
 export default function FilmsPage() {
 	const [films, setFilms] = useState([])
 	const [data, setData] = useState([])
 	const [loading, setLoading] = useState(false)
-	const [showFilms, setShowFilms] = useState(true)
 
 	const [searchInput, setSearchInput] = useState([])
-	const [searchData, setSearchData] = useState([])
 
 	const [page, setPage] = useState(1)
-	const [searchParams, setSearchParams] = useSearchParams()
-	const searchInputRef = useRef()
 
-	const query = searchParams.get('query')
+	const [searchParams, setSearchParams] = useSearchParams()
+
+	const query = searchParams.get('search')
 
 	const fetchFilms = async page => {
 		setLoading(true)
@@ -36,18 +33,12 @@ export default function FilmsPage() {
 	const searchSWAPI = async (searchQuery, page) => {
 		setFilms([])
 		setLoading(true)
-		setSearchData([])
 
 		const data = await SwapiAPI.search('films', searchQuery, page)
 
-		setSearchData(data)
-
-		console.log('Data from API:', data)
-		console.log('Hits of characters from API', data.results)
-
+		setFilms(data.results)
+		setData(data)
 		setLoading(false)
-
-		console.log(data)
 	}
 
 	const handleSubmit = async e => {
@@ -61,7 +52,6 @@ export default function FilmsPage() {
 		setPage(1)
 		searchSWAPI(searchInput, 1)
 		setSearchParams({ query: searchInput })
-		setShowFilms(false)
 	}
 
 	useEffect(() => {
@@ -85,32 +75,21 @@ export default function FilmsPage() {
 			/>
 			{loading && <Loading />}
 
-			{showFilms ? (
+			{data && (
 				<>
+					{query && (
+						<p className='text-center'>
+							Showing {data.count} search results for '{query}'
+						</p>
+					)}
+
 					<FilmCard films={films} />
 
 					{!loading && (
-						<Pagination
-							data={data}
-							onSetPage={setPage}
-							page={page}
-							films={films}
-						/>
+						<Pagination data={data} onSetPage={setPage} page={page} />
 					)}
 				</>
-			) : null}
-
-			{/* {searchData.results && (
-				<>
-					<SearchFilm searchData={searchData} query={query} />
-
-					<SearchPagination
-						searchData={searchData}
-						onSetPage={setPage}
-						page={page}
-					/>
-				</>
-			)} */}
+			)}
 		</>
 	)
 }
