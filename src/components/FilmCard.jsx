@@ -7,7 +7,7 @@ function FilmCard({ films }) {
 			{films.map(film => (
 				<div
 					key={film.episode_id}
-					className='card border-secondary m-3 col-md-3 col-sm-4 col-xs-12'
+					className='card film-card border-secondary m-3 col-md-3 col-sm-4 col-xs-12'
 					style={{ minWidth: '22rem' }}
 				>
 					<div className='card-header film-card-header d-flex align-items-center'>

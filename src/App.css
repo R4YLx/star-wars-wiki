@@ -14,3 +14,27 @@
 	background-size: cover;
 	min-height: 100vh;
 }
+
+.film-card:hover,
+.character-card:hover {
+	animation: lift 0.7s;
+	animation-iteration-count: 1;
+}
+
+@keyframes lift {
+	0% {
+		transform: translate(0px, 0px);
+	}
+
+	40% {
+		transform: translate(0px, -5px);
+	}
+
+	80% {
+		transform: translate(0px, -5px);
+	}
+
+	100% {
+		transform: translate(0px, 0px);
+	}
+}
