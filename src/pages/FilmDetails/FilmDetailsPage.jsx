@@ -2,7 +2,6 @@ import SwapiAPI from '../../services/SwapiAPI'
 import Loading from '../../components/Loading/Loading'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-
 import NotFound from '../NotFound/NotFound'
 import FilmDetails from '../../components/FilmDetails'
 
@@ -11,8 +10,10 @@ export default function FilmDetailsPage() {
 	const [characters, setCharacters] = useState([])
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState(null)
+
 	const { id } = useParams()
 
+	// Fetching details about specific film
 	const fetchFilmDetails = async () => {
 		setLoading(true)
 		try {

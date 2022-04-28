@@ -4,6 +4,8 @@ import { Link, useNavigate } from 'react-router-dom'
 function FilmDetails({ details, characters }) {
 	const navigate = useNavigate()
 	return (
+		// Detailed card with film info and links to characters that appears in the film
+
 		<div className='card m-4 character-details-card animate__animated animate__fadeIn animate__delay-2s'>
 			<h3 className='card-header text-dark'>{details.title}</h3>
 			<div className='card-body'>
@@ -31,6 +33,8 @@ function FilmDetails({ details, characters }) {
 				<h5 className='card-title text-dark'>Links</h5>
 				<h6 className='card-subtitle text-muted'>Characters</h6>
 			</div>
+
+			{/* list with appearing characters in the film */}
 			<ul className='list-group list-group-flush'>
 				{characters &&
 					characters.map(character => (
@@ -45,6 +49,7 @@ function FilmDetails({ details, characters }) {
 					))}
 			</ul>
 
+			{/* back button  */}
 			<div className='m-2 pt-4'>
 				<button
 					type='button'

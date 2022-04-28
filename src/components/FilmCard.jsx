@@ -3,6 +3,8 @@ import { getIdFromUrl } from '../helpers/helpers'
 
 function FilmCard({ films }) {
 	return (
+		// Maps out film cards with attributes and a link to a more detailed card
+
 		<div className='d-flex flex-wrap justify-content-center animate__animated animate__fadeInUp animate__delay-2s'>
 			{films.map(film => (
 				<div
@@ -28,6 +30,8 @@ function FilmCard({ films }) {
 							<span>Characters: </span>
 							{film.characters.length}
 						</p>
+
+						{/* Link to detailed film card */}
 
 						<Link to={`/films/${getIdFromUrl(film.url)}`}>
 							<button type='button' className='btn btn-primary'>

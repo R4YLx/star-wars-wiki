@@ -3,6 +3,8 @@ import notFoundImg from '../../assets/404.gif'
 export default function NotFound({ error }) {
 	return (
 		<>
+			{/* Error catches */}
+
 			{error && (
 				<div className='alert alert-danger text-center' role='alert'>
 					{error}

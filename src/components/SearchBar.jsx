@@ -5,6 +5,7 @@ export default function SearchBar({
 }) {
 	return (
 		<>
+			{/* Search bar for resources */}
 			<div className='d-flex justify-content-center m-4 animate__animated animate__fadeIn'>
 				<form className='d-flex align-items-center' onSubmit={onHandleSubmit}>
 					<input

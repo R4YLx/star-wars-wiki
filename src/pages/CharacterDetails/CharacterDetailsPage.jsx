@@ -11,8 +11,10 @@ export default function CharactersDetails() {
 	const [films, setFilms] = useState([])
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState(null)
+
 	const { id } = useParams()
 
+	// Fetching details about specific character
 	const fetchCharacterDetails = async () => {
 		setLoading(true)
 		try {

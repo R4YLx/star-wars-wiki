@@ -2,17 +2,14 @@ import CharacterCard from '../../components/CharacterCard'
 import { useEffect, useState } from 'react'
 import SwapiAPI from '../../services/SwapiAPI'
 import Loading from '../../components/Loading/Loading'
-
 import SearchBar from '../../components/SearchBar'
 import { useSearchParams } from 'react-router-dom'
-
 import Pagination from '../../components/Pagination'
 
 export default function CharactersPage() {
 	const [characters, setCharacters] = useState([])
 	const [data, setData] = useState([])
 	const [loading, setLoading] = useState(false)
-
 	const [searchInput, setSearchInput] = useState([])
 
 	const [searchParams, setSearchParams] = useSearchParams({
@@ -20,9 +17,11 @@ export default function CharactersPage() {
 		page: 1,
 	})
 
+	// Keeping track of search query and page
 	const query = searchParams.get('query')
 	const page = searchParams.get('page')
 
+	// Fetching characters from API
 	const fetchCharacters = async (query, page) => {
 		setLoading(true)
 		const data = await SwapiAPI.getCharacters(query, page)

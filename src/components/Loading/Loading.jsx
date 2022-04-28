@@ -3,6 +3,7 @@ import './Loading.css'
 
 export default function Loading() {
 	return (
+		// Setting loading page
 		<>
 			<div className='d-flex justify-content-center m-4 animate__animated animate__fadeInDown'>
 				<img src={loadingImg} alt='' />

@@ -4,6 +4,8 @@ import { getIdFromUrl } from '../helpers/helpers'
 function CharacterDetails({ details, films }) {
 	const navigate = useNavigate()
 	return (
+		// Detailed card with character info and links to films that the character appears in
+
 		<div className='card m-4 character-details-card animate__animated animate__fadeIn animate__delay-2s'>
 			<h3 className='card-header text-dark'>{details.name}</h3>
 			<div className='card-body'>
@@ -43,6 +45,8 @@ function CharacterDetails({ details, films }) {
 				<h5 className='card-title text-dark'>Links</h5>
 				<h6 className='card-subtitle text-muted'>Films</h6>
 			</div>
+
+			{/* list with films the character appears in */}
 			<ul className='list-group list-group-flush'>
 				{films &&
 					films.map(film => (
@@ -52,6 +56,7 @@ function CharacterDetails({ details, films }) {
 					))}
 			</ul>
 
+			{/* back button  */}
 			<div className='m-2 pt-4'>
 				<button
 					type='button'

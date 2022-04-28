@@ -11,8 +11,10 @@ export default function Homepage() {
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState(null)
 
+	// Randomizes a random number to fetch 1 out of 6 films
 	const randomEpisode = Math.floor(Math.random() * (6 - 1) + 1)
 
+	// Fetching data from API
 	const fetchCrawl = async () => {
 		setLoading(true)
 		try {
@@ -43,6 +45,7 @@ export default function Homepage() {
 		<>
 			{loading && <Loading />}
 			{data && (
+				// The famous Star Wars opening crawl
 				<Crawl
 					style={{ whiteSpace: 'pre-wrap' }}
 					title={`Episode ${data.episode_id}`}

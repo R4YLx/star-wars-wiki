@@ -1,6 +1,9 @@
 function CharactersPagination({ data, onSetSearchParams, page, query }) {
 	return (
+		// Pagination section
+
 		<div className='d-flex justify-content-between align-items-center p-4 animate__animated animate__fadeIn'>
+			{/* PREVIOUS */}
 			<button
 				disabled={!data.previous}
 				onClick={() => {
@@ -19,6 +22,8 @@ function CharactersPagination({ data, onSetSearchParams, page, query }) {
 			<div className='page'>
 				{page} / {Math.ceil(data.count / 10)}
 			</div>
+
+			{/* NEXT */}
 			<button
 				disabled={!data.next}
 				onClick={() => {

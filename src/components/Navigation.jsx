@@ -8,11 +8,14 @@ export default function Navigation() {
 	}
 
 	return (
+		// Navigation with links
 		<nav className='navbar navbar-expand-lg navbar-dark bg-primary'>
 			<div className='container-fluid'>
 				<NavLink to='/' className='navbar-brand site-name'>
 					Star Wars Wiki
 				</NavLink>
+
+				{/* Toggler / hamburger button */}
 				<button
 					onClick={handleToggle}
 					className='navbar-toggler'
@@ -26,6 +29,7 @@ export default function Navigation() {
 					<span className='navbar-toggler-icon'></span>
 				</button>
 
+				{/* Links  */}
 				<div
 					className={`${isActive ? 'collapse' : ''} navbar-collapse`}
 					id='navbarColor01'

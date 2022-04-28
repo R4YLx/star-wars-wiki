@@ -3,6 +3,8 @@ import { getIdFromUrl } from '../helpers/helpers'
 
 function CharacterCard({ characters }) {
 	return (
+		// Maps out character cards with attributes and a link to a more detailed card
+
 		<div className='d-flex flex-wrap justify-content-center animate__animated animate__fadeInUp animate__delay-2s'>
 			{characters.map((character, index) => (
 				<div
@@ -28,6 +30,8 @@ function CharacterCard({ characters }) {
 							<span>Appears in: </span>
 							{character.films.length} film(s)
 						</p>
+
+						{/* Link to detailed card */}
 						<Link to={`/characters/${getIdFromUrl(character.url)}`}>
 							<button type='button' className='btn btn-primary'>
 								Read more
