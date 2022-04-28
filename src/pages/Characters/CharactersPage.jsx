@@ -15,53 +15,34 @@ export default function CharactersPage() {
 
 	const [searchInput, setSearchInput] = useState([])
 
-	const [page, setPage] = useState(1)
-
-	const [searchParams, setSearchParams] = useSearchParams()
+	const [searchParams, setSearchParams] = useSearchParams({
+		query: '',
+		page: 1,
+	})
 
 	const query = searchParams.get('query')
+	const page = searchParams.get('page')
 
-	const fetchCharacters = async (searchQuery, page) => {
+	const fetchCharacters = async (query, page) => {
 		setLoading(true)
-		const data = await SwapiAPI.getCharacters(searchQuery, page)
+		const data = await SwapiAPI.getCharacters(query, page)
 		setCharacters(data.results)
 		setData(data)
-		setLoading(false)
-	}
-
-	const searchSWAPI = async (searchQuery, page) => {
-		setCharacters([])
-		setLoading(true)
-
-		const data = await SwapiAPI.search('people', searchQuery, page)
-
-		setCharacters(data.results)
-		setData(data)
-
 		setLoading(false)
 	}
 
 	const handleSubmit = async e => {
-		setCharacters([])
 		e.preventDefault()
 
 		if (!searchInput.length) {
 			return
 		}
 
-		setPage(1)
-		searchSWAPI(searchInput, 1)
-		// fetchCharacters(searchInput, 1)
-		setSearchParams({ query: searchInput })
+		setSearchParams({ query: searchInput, page: 1 })
 	}
 
 	useEffect(() => {
-		if (!query) {
-			fetchCharacters(page)
-			return
-		}
-		searchSWAPI(query, page)
-		// fetchCharacters(query, page)
+		fetchCharacters(query, page)
 	}, [query, page])
 
 	return (
@@ -84,7 +65,12 @@ export default function CharactersPage() {
 					<CharacterCard characters={characters} />
 
 					{!loading && (
-						<Pagination data={data} onSetPage={setPage} page={page} />
+						<Pagination
+							data={data}
+							query={query}
+							onSetSearchParams={setSearchParams}
+							page={page}
+						/>
 					)}
 				</>
 			)}

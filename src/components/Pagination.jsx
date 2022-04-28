@@ -1,11 +1,18 @@
-function CharactersPagination({ data, onSetPage, page }) {
+function CharactersPagination({ data, onSetSearchParams, page, query }) {
 	const nextPage = () => {
-		onSetPage(prevValue => prevValue + 1)
+		onSetSearchParams({
+			query: query,
+			page: Number(page) + 1,
+		})
+
 		window.scrollTo(0, 0)
 	}
 
 	const prevPage = () => {
-		onSetPage(prevValue => prevValue - 1)
+		onSetSearchParams({
+			query: query,
+			page: Number(page) - 1,
+		})
 		window.scrollTo(0, 0)
 	}
 
