@@ -32,16 +32,17 @@ function FilmDetails({ details, characters }) {
 				<h6 className='card-subtitle text-muted'>Characters</h6>
 			</div>
 			<ul className='list-group list-group-flush'>
-				{characters.map(character => (
-					<Link
-						key={getIdFromUrl(character)}
-						to={`/characters/${getIdFromUrl(character)}`}
-					>
-						<li className='list-group-item'>
-							Character {getIdFromUrl(character)}
-						</li>
-					</Link>
-				))}
+				{characters &&
+					characters.map(character => (
+						<Link
+							key={getIdFromUrl(character)}
+							to={`/characters/${getIdFromUrl(character)}`}
+						>
+							<li className='list-group-item'>
+								Character {getIdFromUrl(character)}
+							</li>
+						</Link>
+					))}
 			</ul>
 
 			<div className='m-2 pt-4'>
