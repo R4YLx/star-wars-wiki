@@ -2,15 +2,12 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import App from './App'
-import ThemeContextProvider from './context/ThemeContextProvider'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
 	<React.StrictMode>
 		<BrowserRouter>
-			<ThemeContextProvider>
-				<App />
-			</ThemeContextProvider>
+			<App />
 		</BrowserRouter>
 	</React.StrictMode>
 )
