@@ -1,32 +1,26 @@
-import classNames from 'classnames'
-import { createContext, useContext, useState } from 'react'
+import { createContext, useState } from 'react'
 
 export const ThemeContext = createContext()
 
-export const useThemeContext = () => {
-	return useContext(ThemeContext)
-}
-
-const ThemeContextProvider = () => {
+const ThemeContextProvider = ({ children }) => {
 	const [theme, setTheme] = useState('dark')
 
-	const isLightTheme = () => theme === ' light'
-
-	const getStyle = () => {
-		return classNames({
-			'bg-light': isLightTheme(),
-			'navbar-light': isLightTheme(),
-			'text-primary': isLightTheme(),
-		})
-	}
+	const isLightTheme = () => theme === 'light'
 
 	const toggleTheme = () => {
 		setTheme(theme === 'dark' ? 'light' : 'dark')
 	}
 
-	const values = { theme, toggleTheme, isLightTheme, getStyle }
+	const values = {
+		theme,
+		setTheme,
+		isLightTheme,
+		toggleTheme,
+	}
 
-	return <ThemeContext.Provider value={values}></ThemeContext.Provider>
+	return (
+		<ThemeContext.Provider value={values}>{children}</ThemeContext.Provider>
+	)
 }
 
 export default ThemeContextProvider
