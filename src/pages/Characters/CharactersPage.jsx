@@ -55,12 +55,8 @@ export default function CharactersPage() {
 	}
 
 	useEffect(() => {
-		fetchCharacters(page)
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
-
-	useEffect(() => {
 		if (!query) {
+			fetchCharacters(page)
 			return
 		}
 
