@@ -24,6 +24,7 @@ export default function CharactersDetails() {
 			if (err.name === 'AbortError') {
 				console.log('Fetch was aborted')
 			} else {
+				setDetails(null)
 				setLoading(false)
 				setError('Fetch data could not')
 			}
@@ -40,7 +41,7 @@ export default function CharactersDetails() {
 			{loading && <Loading />}
 
 			<div className='d-flex justify-content-center'>
-				{!loading && <CharacterDetails details={details} films={films} />}
+				{details && <CharacterDetails details={details} films={films} />}
 			</div>
 
 			{error && <NotFound error={error} />}

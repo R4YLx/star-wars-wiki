@@ -14,8 +14,8 @@ const getCharacters = async page => {
 	return res.data
 }
 
-// const getCharacters = async (query = null, page = null) => {
-// 	if (!query) {
+// const getCharacters = async (query = null, page) => {
+// 	if (query) {
 // 		const res = await axios.get(`people/?search=${query}&page=${page}`)
 // 		return res.data
 // 	} else {

@@ -21,9 +21,9 @@ export default function CharactersPage() {
 
 	const query = searchParams.get('query')
 
-	const fetchCharacters = async page => {
+	const fetchCharacters = async (searchQuery, page) => {
 		setLoading(true)
-		const data = await SwapiAPI.getCharacters(page)
+		const data = await SwapiAPI.getCharacters(searchQuery, page)
 		setCharacters(data.results)
 		setData(data)
 		setLoading(false)
@@ -51,6 +51,7 @@ export default function CharactersPage() {
 
 		setPage(1)
 		searchSWAPI(searchInput, 1)
+		// fetchCharacters(searchInput, 1)
 		setSearchParams({ query: searchInput })
 	}
 
@@ -59,8 +60,8 @@ export default function CharactersPage() {
 			fetchCharacters(page)
 			return
 		}
-
 		searchSWAPI(query, page)
+		// fetchCharacters(query, page)
 	}, [query, page])
 
 	return (
