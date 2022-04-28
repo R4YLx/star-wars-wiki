@@ -66,9 +66,9 @@ export default function CharactersPage() {
 
 					{!loading && (
 						<Pagination
+							onSetSearchParams={setSearchParams}
 							data={data}
 							query={query}
-							onSetSearchParams={setSearchParams}
 							page={page}
 						/>
 					)}

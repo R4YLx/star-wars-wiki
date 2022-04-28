@@ -16,55 +16,34 @@ export default function FilmsPage() {
 
 	const [searchInput, setSearchInput] = useState([])
 
-	const [page, setPage] = useState(1)
-
-	const [searchParams, setSearchParams] = useSearchParams()
+	const [searchParams, setSearchParams] = useSearchParams({
+		query: '',
+		page: 1,
+	})
 
 	const query = searchParams.get('query')
+	const page = searchParams.get('page')
 
-	const fetchFilms = async page => {
+	const fetchFilms = async (query, page) => {
 		setLoading(true)
-		const data = await SwapiAPI.getFilms(page)
-		setFilms(data.results)
-		setData(data)
-		setLoading(false)
-	}
-
-	const searchSWAPI = async (searchQuery, page) => {
-		setFilms([])
-		setLoading(true)
-
-		const data = await SwapiAPI.search('films', searchQuery, page)
-
+		const data = await SwapiAPI.getFilms(query, page)
 		setFilms(data.results)
 		setData(data)
 		setLoading(false)
 	}
 
 	const handleSubmit = async e => {
-		setFilms([])
 		e.preventDefault()
 
 		if (!searchInput.length) {
 			return
 		}
 
-		setPage(1)
-		searchSWAPI(searchInput, 1)
-		setSearchParams({ query: searchInput })
+		setSearchParams({ query: searchInput, page: 1 })
 	}
 
 	useEffect(() => {
-		fetchFilms(page)
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
-
-	useEffect(() => {
-		if (!query) {
-			return
-		}
-
-		searchSWAPI(query, page)
+		fetchFilms(query, page)
 	}, [query, page])
 
 	return (
@@ -87,7 +66,12 @@ export default function FilmsPage() {
 					<FilmCard films={films} />
 
 					{!loading && (
-						<Pagination data={data} onSetPage={setPage} page={page} />
+						<Pagination
+							onSetSearchParams={setSearchParams}
+							data={data}
+							query={query}
+							page={page}
+						/>
 					)}
 				</>
 			)}
