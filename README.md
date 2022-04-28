@@ -21,9 +21,17 @@ User should be able to click on specific film and character to get more info.
 
 #### Requirement
 
-- React
-- React Router
+- Use React Router
 - Use Axios for API
+- Services file for all API fetch
+- Use components
+- All resources should be clickable
+- Simple pagination
+
+#### Optional features
+
+- Search function as a component
+- Pagination using query params
 
 #### Time limit
 
