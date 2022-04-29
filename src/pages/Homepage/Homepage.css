@@ -3,7 +3,7 @@
 }
 
 .crawler > div {
-	min-height: 100% !important;
+	min-height: 20vh !important;
 }
 
 .title {
