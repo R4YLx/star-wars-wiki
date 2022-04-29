@@ -1,5 +1,6 @@
 .crawler {
 	background: none !important;
+	min-height: 100vh;
 }
 
 .crawler > div {
