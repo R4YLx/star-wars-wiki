@@ -6,7 +6,7 @@ function CharacterDetails({ details, films }) {
 	return (
 		// Detailed card with character info and links to films that the character appears in
 
-		<div className='card m-4 character-details-card animate__animated animate__fadeIn animate__delay-2s'>
+		<div className='card m-4 character-details-card animate__animated animate__fadeIn'>
 			<h3 className='card-header text-dark'>{details.name}</h3>
 			<div className='card-body'>
 				<h5 className='card-title text-dark'>Attributes</h5>

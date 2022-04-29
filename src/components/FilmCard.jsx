@@ -5,7 +5,7 @@ function FilmCard({ films }) {
 	return (
 		// Maps out film cards with attributes and a link to a more detailed card
 
-		<div className='d-flex flex-wrap justify-content-center animate__animated animate__fadeInUp animate__delay-2s'>
+		<div className='d-flex flex-wrap justify-content-center animate__animated animate__fadeInUp'>
 			{films.map(film => (
 				<div
 					key={film.episode_id}
