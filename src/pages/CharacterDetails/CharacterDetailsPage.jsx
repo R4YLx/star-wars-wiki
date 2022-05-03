@@ -1,7 +1,7 @@
 import './CharacterDetailsPage.css'
 import SwapiAPI from '../../services/SwapiAPI'
 import Loading from '../../components/Loading/Loading'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import NotFound from '../NotFound/NotFound'
 import CharacterDetails from '../../components/CharacterDetails'
@@ -15,7 +15,7 @@ export default function CharactersDetails() {
 	const { id } = useParams()
 
 	// Fetching details about specific character
-	const fetchCharacterDetails = async () => {
+	const fetchCharacterDetails = useCallback(async () => {
 		setLoading(true)
 		try {
 			const res = await SwapiAPI.getSingleCharacter(id)
@@ -31,12 +31,11 @@ export default function CharactersDetails() {
 				setError('Fetch data could not')
 			}
 		}
-	}
+	}, [id])
 
 	useEffect(() => {
 		fetchCharacterDetails()
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
+	}, [fetchCharacterDetails])
 
 	return (
 		<>

@@ -1,6 +1,6 @@
 import SwapiAPI from '../../services/SwapiAPI'
 import Loading from '../../components/Loading/Loading'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import NotFound from '../NotFound/NotFound'
 import FilmDetails from '../../components/FilmDetails'
@@ -14,7 +14,7 @@ export default function FilmDetailsPage() {
 	const { id } = useParams()
 
 	// Fetching details about specific film
-	const fetchFilmDetails = async () => {
+	const fetchFilmDetails = useCallback(async () => {
 		setLoading(true)
 		try {
 			const res = await SwapiAPI.getSingleFilm(id)
@@ -34,12 +34,11 @@ export default function FilmDetailsPage() {
 				setError('Fetch data could not')
 			}
 		}
-	}
+	}, [id])
 
 	useEffect(() => {
 		fetchFilmDetails()
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
+	}, [fetchFilmDetails])
 
 	return (
 		<>
